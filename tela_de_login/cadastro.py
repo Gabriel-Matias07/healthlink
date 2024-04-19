@@ -14,7 +14,7 @@ def cadastrar_novo_usuario(nome, email, senha, confirmar_senha):
 
 #Criando e se conectando ao banco de dados:
     try:
-        banco = sqlite3.connect("data_user.db") #Cria o arquivo data_user do banco de dados para armazenar
+        banco = sqlite3.connect("data_user.db") #Cria o arquivo data_user (caso não exista) do banco de dados para armazenar
         cursor = banco.cursor() #Cria um objeto cursor para executar comandos SQL no banco de dados SQLite.
 
 
@@ -31,8 +31,18 @@ def cadastrar_novo_usuario(nome, email, senha, confirmar_senha):
         erro = True
     return erro
 
-#Chamando a função para testes:
-if not cadastrar_novo_usuario("Gabriel", "gabrielpereira9036@gmail.com", "123456789", "123456789"):
-    print("Cadastro realizado com sucesso!")
-else:
-    print("Erro ao cadastrar!")
+#Realizando a introdução dos dados:
+def introduzir_dados_usuarios():
+    print("\n")
+    print("----Olá, vamos realizar o seu cadastro no nosso sistema----\n")
+    nome = input("Digite o seu nome: ")
+    email = input("Digite o seu email: ")
+    senha = input("Digite a sua senha: ")
+    confirmar_senha = input("Confirme a sua senha: ")
+    print("\n")
+    
+    #Chamando a função:
+    if not cadastrar_novo_usuario(nome, email, senha, confirmar_senha):
+        print("Cadastro realizado com sucesso!\n")
+    else:
+        print("Erro ao cadastrar!")
