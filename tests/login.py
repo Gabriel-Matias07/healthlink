@@ -1,6 +1,7 @@
 import sqlite3
 
 def login_usuario():
+    """Realiza o processo de login do usuário."""
     email_user = input("Digite seu email: ")
     senha_user = input("Digite sua senha: ")
     
@@ -21,6 +22,7 @@ def login_usuario():
         login_usuario()
     
     try:
+        # Conectando ao banco de dados:
         banco = sqlite3.connect("data_user.db")
         cursor = banco.cursor()
 
