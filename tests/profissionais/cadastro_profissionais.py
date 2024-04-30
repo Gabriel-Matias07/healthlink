@@ -1,7 +1,7 @@
 import sqlite3
 
 #Validando informações:
-def cadastrar_novo_usuario(nome, email, senha, confirmar_senha):
+def cadastrar_novo_profissional(nome, email, senha, confirmar_senha):
     erro = False
     if nome:
         pass
@@ -14,14 +14,14 @@ def cadastrar_novo_usuario(nome, email, senha, confirmar_senha):
 
 #Criando e se conectando ao banco de dados:
     try:
-        banco = sqlite3.connect("data_user.db") #Cria o arquivo data_user (caso não exista) do banco de dados para armazenar
+        banco = sqlite3.connect("data_profissional.db") #Cria o arquivo data_profissional (caso não exista) do banco de dados para armazenar
         cursor = banco.cursor() #Cria um objeto cursor para executar comandos SQL no banco de dados SQLite.
 
 
-        cursor.execute("CREATE TABLE IF NOT EXISTS data_user (nome text, email text, senha text)") #Cria uma tabela dentro do arquivo .db
+        cursor.execute("CREATE TABLE IF NOT EXISTS data_profissional (nome text, email text, senha text)") #Cria uma tabela dentro do arquivo .db
 
 #Inserindo informações no bando de dados:        
-        cursor.execute(f"INSERT INTO data_user VALUES ('{nome}', '{email}', '{senha}')") #Insere os arquivos na tabela
+        cursor.execute(f"INSERT INTO data_profissional VALUES ('{nome}', '{email}', '{senha}')") #Insere os arquivos na tabela
 
         banco.commit() #Envia os arquivos
         banco.close()
@@ -32,7 +32,7 @@ def cadastrar_novo_usuario(nome, email, senha, confirmar_senha):
     return erro
 
 #Realizando a introdução dos dados:
-def introduzir_dados_usuarios():
+def introduzir_dados_profissional():
     print("\n")
     print("----Olá, vamos realizar o seu cadastro no nosso sistema----\n")
     nome = input("Digite o seu nome: ")
@@ -42,7 +42,7 @@ def introduzir_dados_usuarios():
     print("\n")
     
     #Chamando a função:
-    if not cadastrar_novo_usuario(nome, email, senha, confirmar_senha):
+    if not cadastrar_novo_profissional(nome, email, senha, confirmar_senha):
         print("Cadastro realizado com sucesso!\n")
     else:
         print("Erro ao cadastrar!")

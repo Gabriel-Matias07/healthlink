@@ -1,6 +1,6 @@
 import sqlite3
 
-def login_usuario():
+def login_profissional():
     email_user = input("Digite seu email: ")
     senha_user = input("Digite sua senha: ")
     
@@ -8,23 +8,23 @@ def login_usuario():
         pass
     else:
         print("Email vazio")
-        login_usuario()
+        login_profissional()
     if "@" in email_user and ".com":
         pass
     else:
         print("Email inválido!")
-        login_usuario()
+        login_profissional()
     if len(senha_user) > 5:
         pass
     else:
         print("Senha muito curta!")
-        login_usuario()
+        login_profissional()
     
     try:
-        banco = sqlite3.connect("data_user.db")
+        banco = sqlite3.connect("data_profissional.db")
         cursor = banco.cursor()
 
-        cursor.execute("SELECT email, senha FROM data_user WHERE email = ?", (email_user, ))
+        cursor.execute("SELECT email, senha FROM data_profissional WHERE email = ?", (email_user, ))
         resultado = cursor.fetchone()
 
         if resultado:

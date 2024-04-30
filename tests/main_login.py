@@ -1,37 +1,38 @@
-from tkinter import *
 import login
 import cadastro
-
+from profissionais import login_prof
+from profissionais import cadastro_profissionais
 
 def main():
-    """Função principal do programa.
-
-    Esta função exibe uma mensagem de boas-vindas ao usuário e permite que ele selecione
-    entre profissiona ou cliente e realizar login, cadastrar um novo usuário ou encerrar o programa.
-
-    Returns:
-        None
-    """
-    print("\n")
-    print("----------------------------------Bem vindo ao HealthLink---------------------------------\n")
-    print("-------------MENU-------------\n")
-    print("----Escolha a opção desejada----\n")
-    print("--- Login (Digite 1)")
-    print("--- Cadastro (Digite 2)")
-    print("--- Encerrar (Digite 0)\n")
-    print("------------------------------")
-    
-    resposta_login_cadas_encer = input("R = ")
-    print("\n")
-    
-    if resposta_login_cadas_encer == "1":
-        login.login_usuario()
-    if resposta_login_cadas_encer == "2":
-        cadastro.introduzir_dados_usuarios()
-    if resposta_login_cadas_encer == "0":
-        print("----Fim----")
-
-    return None
-
+    print("----Bem vindo ao HealthLink----")
+    print("----Digite 1 para Usuário, 2 para Profissional ou 0 para encerrar----")
+    user_or_prof = input()
+    if user_or_prof == '1':
+        print("Opção 'Usuário' selecionada! \n")
+        print("----Selecione 1 para login, 2 para cadastro ou 0 para encerrar----")
+        resposta = input()
+        if resposta == '1':
+            login.login_usuario()
+        elif resposta == '2':
+            cadastro.introduzir_dados_usuarios()
+        elif resposta == '0':
+            print('----Fim----')
+        else:
+            print("Resposta inválida")
+            return None
+    elif user_or_prof == '2':
+        print("Opção 'Profissional' selecionada! \n")
+        print("----Selecione 1 para login, 2 para cadastro ou 0 para encerrar----")
+        resposta = input()
+        if resposta == '1':
+            login_prof.login_profissional()
+        elif resposta == '2':
+            cadastro_profissionais.introduzir_dados_profissional()
+        elif resposta == '0':
+            print('----Fim----')
+        else:
+            print("Resposta inválida")
+            return None
+        
 if __name__ == "__main__":
     main()
