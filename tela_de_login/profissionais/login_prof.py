@@ -1,6 +1,7 @@
 import sqlite3
+import senha_recovery
 
-def login_profissional():
+def login_profissional(contador = 0):
     email_user = input("Digite seu email: ")
     senha_user = input("Digite sua senha: ")
     
@@ -33,7 +34,14 @@ def login_profissional():
             if senha_user == senha_bd:
                 print("Login bem-sucedido!")
             else:
+                contador += 1
+                if contador == 3:
+                    contador = 0
+                    senha_recovery.recovery(email_user)
+                else:
+                    pass
                 print("Senha incorreta. Tente novamente.")
+                login_profissional(contador)
         else:
             print("Email não encontrado. Verifique o email e tente novamente.")
 

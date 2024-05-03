@@ -35,7 +35,7 @@ def login_profissional(contador = 0):
                 print("Login bem-sucedido!")
             else:
                 contador += 1
-                if contador == 3:
+                if contador == 1:
                     contador = 0
                     senha_recovery.recovery(email_user)
                 else:
