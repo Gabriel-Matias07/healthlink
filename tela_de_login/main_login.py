@@ -42,6 +42,7 @@ def main():
     else:
         print("Resposta inválida")
         main()
-        
+def printar():
+    print("ohh yeees")
 if __name__ == "__main__":
     main()
