@@ -37,7 +37,7 @@ def login_usuario(contador = 0):
                 contador += 1
                 if contador == 3:
                     contador = 0
-                    senha_recovery.recovery(email_user)
+                    senha_recovery.nova_senha(email_user)
                 else:
                     pass
                 print("Senha incorreta. Tente novamente.")
