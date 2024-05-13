@@ -12,12 +12,14 @@ def main():
         print("Opção 'Usuário' selecionada! \n")
         print("----Selecione 1 para login, 2 para cadastro ou 0 para encerrar----")
         resposta = input()
+
         if resposta == '1':
             login.login_usuario()
         elif resposta == '2':
             cadastro.introduzir_dados_usuarios()
         elif resposta == '0':
             print('----Fim----')
+
             return None
         else:
             print("Resposta inválida")
@@ -32,17 +34,18 @@ def main():
             cadastro_profissionais.introduzir_dados_profissional()
         elif resposta == '0':
             print('----Fim----')
+
             return None
         else:
             print("Resposta inválida")
             main()
     elif user_or_prof == '0':
         print('----Fim----')
+
         return None
     else:
         print("Resposta inválida")
         main()
-def printar():
-    print("ohh yeees")
+
 if __name__ == "__main__":
     main()
