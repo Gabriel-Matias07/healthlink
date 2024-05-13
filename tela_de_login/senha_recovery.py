@@ -11,8 +11,7 @@ def nova_senha(email_recovery):
         if user_or_prof == '1':
             inserir_nova_senha_user(email_recovery)
         elif resultado == '2':
-            """ inserir_nova_senha_prof(email_recovery) """
-            pass
+            inserir_nova_senha_prof(email_recovery)
     elif resultado == '2':
         login.login_usuario()
 
@@ -27,6 +26,38 @@ def inserir_nova_senha_user(email_recovery):
             cursor = banco.cursor()
 
             cursor.execute("UPDATE data_user SET senha = ? WHERE email = ?", (nova_senha, email_recovery, ))
+            banco.commit()
+            banco.close()
+            
+            print("Finalizando processo...")
+            time.sleep(3)
+            print("Inserindo dados...")
+            time.sleep(3)
+            print("Senha alterada com sucesso!")
+
+            exit()
+        except sqlite3.Error as error:
+            error = True
+            print(error)
+
+            exit()
+    else:
+        erro = True
+        print("Senha muito curta!")
+
+    return erro
+
+#Banco de dados do profissional
+def inserir_nova_senha_prof(email_recovery):
+    erro = False
+    print("Digite sua nova senha: ")
+    nova_senha = input()
+    if len(nova_senha) >= 5:
+        try:
+            banco = sqlite3.connect("data_profissional.db")
+            cursor = banco.cursor()
+
+            cursor.execute("UPDATE data_profissional SET senha = ? WHERE email = ?", (nova_senha, email_recovery, ))
             banco.commit()
             banco.close()
             
