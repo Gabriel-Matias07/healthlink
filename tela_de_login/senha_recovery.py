@@ -10,7 +10,7 @@ def nova_senha(email_recovery):
         user_or_prof = str(input())
         if user_or_prof == '1':
             inserir_nova_senha_user(email_recovery)
-        elif resultado == '2':
+        elif user_or_prof == '2':
             inserir_nova_senha_prof(email_recovery)
     elif resultado == '2':
         login.login_usuario()
