@@ -1,7 +1,7 @@
 import sqlite3
 import senha_recovery
 
-def login_usuario(contador = 0):
+def login_usuario():
     email_user = input("Digite seu email: ")
     senha_user = input("Digite sua senha: ")
     
@@ -33,15 +33,20 @@ def login_usuario(contador = 0):
        
             if senha_user == senha_bd:
                 print("Login bem-sucedido!")
+
+                return 'Acesso Liberado'
             else:
-                contador += 1
-                if contador == 3:
-                    contador = 0
-                    senha_recovery.nova_senha(email_user)
-                else:
-                    pass
-                print("Senha incorreta. Tente novamente.")
-                login_usuario(contador)
+                contador = 1
+                while contador < 3:
+                    print("Senha incorreta!")
+                    senha_user = input("Digite novamente sua senha: ")
+                    if senha_user == senha_bd:
+                        print("Login bem-sucedido!")
+
+                        return 'Acesso Liberado'
+                    contador += 1
+               
+                senha_recovery.nova_senha(email_user)
         else:
             print("Email não encontrado. Verifique o email e tente novamente.")
 
@@ -49,5 +54,3 @@ def login_usuario(contador = 0):
         
     except sqlite3.Error as error:
         print(error)
-
-    return 'Acesso Liberado'
