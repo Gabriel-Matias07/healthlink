@@ -1,7 +1,7 @@
 import sqlite3
 import senha_recovery
 
-def login_profissional(contador = 0):
+def login_profissional():
     email_user = input("Digite seu email: ")
     senha_user = input("Digite sua senha: ")
     
@@ -22,10 +22,10 @@ def login_profissional(contador = 0):
         login_profissional()
     
     try:
-        banco = sqlite3.connect("data_profissional.db")
+        banco = sqlite3.connect("data_user.db")
         cursor = banco.cursor()
 
-        cursor.execute("SELECT email, senha FROM data_profissional WHERE email = ?", (email_user, ))
+        cursor.execute("SELECT email, senha FROM data_user WHERE email = ?", (email_user, ))
         resultado = cursor.fetchone()
 
         if resultado:
@@ -33,15 +33,20 @@ def login_profissional(contador = 0):
        
             if senha_user == senha_bd:
                 print("Login bem-sucedido!")
+
+                return 'Acesso Liberado'
             else:
-                contador += 1
-                if contador == 3:
-                    contador = 0
-                    senha_recovery.nova_senha(email_user)
-                else:
-                    pass
-                print("Senha incorreta. Tente novamente.")
-                login_profissional(contador)
+                contador = 1
+                while contador < 3:
+                    print("Senha incorreta!")
+                    senha_user = input("Digite novamente sua senha: ")
+                    if senha_user == senha_bd:
+                        print("Login bem-sucedido!")
+
+                        return 'Acesso Liberado'
+                    contador += 1
+               
+                senha_recovery.nova_senha(email_user)
         else:
             print("Email não encontrado. Verifique o email e tente novamente.")
 
@@ -49,5 +54,3 @@ def login_profissional(contador = 0):
         
     except sqlite3.Error as error:
         print(error)
-
-    return 'Acesso Liberado'
