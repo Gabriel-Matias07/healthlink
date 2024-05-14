@@ -42,6 +42,7 @@ HealthLink é uma plataforma voltada para a área da saúde, cujo objetivo é de
 1. Clone o repositório para sua máquina local.
 2. Execute o programa Python.
 3. Siga as instruções na interface para navegar pelas diferentes telas e utilizar as funcionalidades da plataforma HealthLink.
+4. Instale todas as blibliotecas requisitas no programa.
 
 ## Palavras-chave
 Saúde, Programa computacional, Democratização, Contratação de profissionais, Comunicação direta, Paciente, Profissionais, Python, Monetização, Porcentagem de pagamento, Telas principais, Login, Dados do usuário, Preferências de contratação, Localidade, Preços iniciais, Pagamentos, Transações bancárias, Negociações, Operações financeiras, Gestão eficiente, Segurança, Informações monetárias, Informações gerais, Profissionais disponíveis, Classificação em estrelas, Comentários, Opções de contratação, Localização geográfica, Recomendações, Escolha do profissional.
