@@ -22,10 +22,10 @@ def login_profissional():
         login_profissional()
     
     try:
-        banco = sqlite3.connect("data_user.db")
+        banco = sqlite3.connect("data_profissional.db")
         cursor = banco.cursor()
 
-        cursor.execute("SELECT email, senha FROM data_user WHERE email = ?", (email_user, ))
+        cursor.execute("SELECT email, senha FROM data_profissional WHERE email = ?", (email_user, ))
         resultado = cursor.fetchone()
 
         if resultado:
