@@ -1,4 +1,5 @@
 import sqlite3
+import os
 
 #Validando informações:
 def cadastrar_novo_profissional(nome, email, senha, confirmar_senha):
@@ -38,6 +39,7 @@ def introduzir_dados_profissional():
     
     #Chamando a função:
     if not cadastrar_novo_profissional(nome, email, senha, confirmar_senha):
+        os.system('cls' if os.name == 'nt' else 'clear')
         print("Cadastro realizado com sucesso!\n")
     else:
         print("Erro ao cadastrar! Verifique os dados e tente novamente.")
