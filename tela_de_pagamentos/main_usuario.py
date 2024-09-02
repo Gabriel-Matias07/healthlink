@@ -1,6 +1,10 @@
-import formulario_cartao
+import formulario_cartao, formulario_boleto, formulario_transferencia
 
-def opcoes_pagamento():
+def menu_principal_usuario():
+    print("Bem-vindo à tela de pagamentos, caro usuário.")
+    print("Vamos prosseguir com o seu atendimento!")
+
+def main():
     print("Escolha uma opção de pagamento:")
     print("1 - Cartão de crédito")
     print("2 - Boleto")
@@ -12,10 +16,11 @@ def opcoes_pagamento():
         case '1':
             formulario_cartao.main()
         case '2':
-            print("Pagamento por cartão de débito.")
+            formulario_boleto.main()
         case '3':
-            print("Pagamento via PIX.")
+            formulario_transferencia.main()
         case _:
             print("Opção inválida.")
 
-opcoes_pagamento()
+menu_principal_usuario()
+main()
