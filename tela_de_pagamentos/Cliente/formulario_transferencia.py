@@ -99,11 +99,24 @@ def validar_valor(valor):
     except ValueError:
         return False
 
+#Função para validação do nome    
+def validar_nome(nome):
+    if not nome.isalpha():
+        return False
+    return True
+
+#Função para validar o banco
+def validar_banco(banco):
+    if not banco.isalpha():
+        return False
+    return True
+
 #Função principal para o usuário preencher o formulario
 def main():
     criar_tabela()
     print("== Formulário de Transferência ==")
     nome = input("Nome completo: ")
+
     cpf = input("CPF: ")
     while not validar_cpf(cpf):
         print("CPF inválido. Use o formato padrão somente com números.")
@@ -128,7 +141,7 @@ def main():
     data = input("Data da Transferência (DD/MM/YYYY): ")
     while not validar_data(data):
         print("Data de transferência inválida. Use o formato DD/MM/YYYY.")
-        data = input("Data da transferência: ")
+        data = input("Data da transferência (DD/MM/YYYY): ")
 
     if not verificacao(nome, conta):
         id = inserir_dados(nome, cpf, banco, agencia, conta, valor, data)
