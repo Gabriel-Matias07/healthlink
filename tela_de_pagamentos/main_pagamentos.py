@@ -1,10 +1,25 @@
-import formulario_cartao, formulario_boleto, formulario_transferencia
+from Cliente import formulario_cartao, formulario_boleto, formulario_transferencia
+from Geral import config_precos
+import sys
 
-def menu_principal_usuario():
+def menu_principal():
     print("Bem-vindo à tela de pagamentos, caro usuário.")
     print("Vamos prosseguir com o seu atendimento!")
+    print("== Menu Principal ==")
+    print("1. Mostrar Preços")
+    print("2. Ir para pagamentos")
+    print("3. Sair")
+    escolha = input("Escolha uma opção: ")
 
-def main():
+    match escolha:
+        case '1':
+            config_precos.exibir_precos()
+        case '2':
+            menu_formularios()
+        case '3':
+            sys.exit()
+
+def menu_formularios():
     print("Escolha uma opção de pagamento:")
     print("1 - Cartão de crédito")
     print("2 - Boleto")
@@ -22,5 +37,4 @@ def main():
         case _:
             print("Opção inválida.")
 
-menu_principal_usuario()
-main()
+menu_principal()

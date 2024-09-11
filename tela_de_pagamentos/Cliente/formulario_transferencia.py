@@ -1,5 +1,6 @@
 import sqlite3, os
 from datetime import datetime
+from comprovante_pagamento import emissao_comprovante
 
 #Função para criar o banco de dados das transferências
 def criar_tabela():
@@ -33,25 +34,6 @@ def inserir_dados(nome, cpf, banco, agencia, conta, valor, data):
     id = cursor.lastrowid
     conexao.close()
     return id
-
-#Função para criação do comprovante de pagamento
-def emissao(id, nome, cpf, banco, agencia, conta, valor, data):
-    diretorio_atual = os.path.abspath(os.path.dirname(__file__))
-    caminho = os.path.join(diretorio_atual, f'comprovante_{id}.txt')
-
-    with open(caminho, 'w', encoding='utf-8') as arquivo:
-        arquivo.write("==== Comprovante de Transferência ====\n")
-        arquivo.write(f"==== ID da Transação: {id}\n")
-        arquivo.write(f"==== Nome: {nome}\n")
-        arquivo.write(f"==== CPF: {cpf}\n")
-        arquivo.write(f"==== Banco: {banco}\n")
-        arquivo.write(f"==== Agência: {agencia}\n")
-        arquivo.write(f"==== Conta: {conta}\n")
-        arquivo.write(f"==== Valor: {valor}\n")
-        arquivo.write(f"==== Data: {data}\n")
-        arquivo.write("======================================\n")
-
-    print(f"Comprovante emitido: {caminho}")
 
 #Função para verificação de nome e conta
 def verificacao(nome, conta):
@@ -99,18 +81,6 @@ def validar_valor(valor):
     except ValueError:
         return False
 
-#Função para validação do nome    
-def validar_nome(nome):
-    if not nome.isalpha():
-        return False
-    return True
-
-#Função para validar o banco
-def validar_banco(banco):
-    if not banco.isalpha():
-        return False
-    return True
-
 #Função principal para o usuário preencher o formulario
 def main():
     criar_tabela()
@@ -146,7 +116,7 @@ def main():
     if not verificacao(nome, conta):
         id = inserir_dados(nome, cpf, banco, agencia, conta, valor, data)
         print("Dados da transferência salvos com sucesso.")
-        emissao(id, nome, cpf, banco, agencia, conta, valor, data)
+        emissao_comprovante(id, nome, cpf, banco, agencia, conta, valor, data)
     else:
         print("Este registro já existe no banco de dados.")
 
