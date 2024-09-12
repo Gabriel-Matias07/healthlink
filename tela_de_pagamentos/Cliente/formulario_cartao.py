@@ -109,7 +109,7 @@ def main():
         print("\nErro, cartão já cadastrado!")
     else:
         inserir_cartao(nome, numero, data_validade, cvv, valor, data_transacao)
-        emissao_comprovante_cartao(inserir_dados_agendamento(servico, agendamento, valor, data_transacao))
+        emissao_comprovante_cartao(servico, agendamento, valor, data_transacao)
         print("\nCartão Salvo!")
     
 if __name__ == "__main__":
