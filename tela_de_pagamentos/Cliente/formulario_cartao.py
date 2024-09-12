@@ -35,15 +35,15 @@ def verificar_cartao_existente(numero):
     return cartao is not None
 
 # Função para inserir os dados do cartão no banco de dados
-def inserir_cartao(nome, numero, data_validade, cvv):
+def inserir_cartao(nome, numero, data_validade, cvv, valor, data_transacao):
     diretorio_atual = os.path.abspath(os.path.dirname(__file__))
     caminho_bd = os.path.join(diretorio_atual, 'cartoes.db')
 
     conexao = sqlite3.connect(caminho_bd)
     cursor = conexao.cursor()
 
-    cursor.execute('''insert into cartao (nome, numero, data_validade, cvv)
-                    values (?, ?, ?, ?)''', (nome, numero, data_validade, cvv))
+    cursor.execute('''insert into cartao (nome, numero, data_validade, cvv, valor, data_transacao)
+                    values (?, ?, ?, ?, ?, ?)''', (nome, numero, data_validade, cvv, valor, data_transacao))
 
     conexao.commit()
     conexao.close()

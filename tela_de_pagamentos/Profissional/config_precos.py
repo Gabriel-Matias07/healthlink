@@ -2,7 +2,7 @@ import sqlite3, os
 
 def tabela_precos():
     diretorio_atual = os.path.abspath(os.path.dirname(__file__))
-    caminho_bd = os.path.join(diretorio_atual, 'plataforma.db')
+    caminho_bd = os.path.join(diretorio_atual, 'precos.db')
     
     conexao = sqlite3.connect(caminho_bd)
     cursor = conexao.cursor()
@@ -11,7 +11,7 @@ def tabela_precos():
                         id INTEGER PRIMARY KEY AUTOINCREMENT,
                         profissional_id INTEGER,
                         tipo_servico TEXT,
-                        preco REAL,
+                        preco TEXT,
                         FOREIGN KEY (profissional_id) REFERENCES profissionais(id)
                     )''')
     
@@ -20,7 +20,7 @@ def tabela_precos():
 
 def adicionar_preco(profissional_id, tipo_servico, preco):
     diretorio_atual = os.path.abspath(os.path.dirname(__file__))
-    caminho_bd = os.path.join(diretorio_atual, 'plataforma.db')
+    caminho_bd = os.path.join(diretorio_atual, 'precos.db')
     
     conexao = sqlite3.connect(caminho_bd)
     cursor = conexao.cursor()
@@ -33,7 +33,7 @@ def adicionar_preco(profissional_id, tipo_servico, preco):
 
 def atualizar_preco(id, preco):
     diretorio_atual = os.path.abspath(os.path.dirname(__file__))
-    caminho_bd = os.path.join(diretorio_atual, 'plataforma.db')
+    caminho_bd = os.path.join(diretorio_atual, 'precos.db')
     
     conexao = sqlite3.connect(caminho_bd)
     cursor = conexao.cursor()
@@ -45,7 +45,7 @@ def atualizar_preco(id, preco):
 
 def exibir_precos(profissional_id):
     diretorio_atual = os.path.abspath(os.path.dirname(__file__))
-    caminho_bd = os.path.join(diretorio_atual, 'plataforma.db')
+    caminho_bd = os.path.join(diretorio_atual, 'precos.db')
     
     conexao = sqlite3.connect(caminho_bd)
     cursor = conexao.cursor()
