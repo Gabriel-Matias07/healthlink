@@ -6,17 +6,18 @@ def menu_principal():
     print("Bem-vindo à tela de pagamentos, caro usuário.")
     print("Vamos prosseguir com o seu atendimento!")
     print("== Menu Principal ==")
-    print("1. Mostrar Preços")
-    print("2. Ir para pagamentos")
-    print("3. Sair")
+    print("1. Mostrar Preços e serviços")
+    print("2. Sair")
     escolha = input("Escolha uma opção: ")
 
     match escolha:
         case '1':
             config_precos.exibir_precos()
+            opcao_agenda = input("Gostaria de fazer um agendamento? (s/n): ")
+            if opcao_agenda.lower() == 's':
+                print("Escolha o seu agendamento: ")
+                menu_formularios()
         case '2':
-            menu_formularios()
-        case '3':
             sys.exit()
 
 def menu_formularios():
@@ -36,5 +37,6 @@ def menu_formularios():
             formulario_transferencia.main()
         case _:
             print("Opção inválida.")
+            return
 
 menu_principal()

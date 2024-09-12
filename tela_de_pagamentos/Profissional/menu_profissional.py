@@ -11,19 +11,19 @@ def menu_profissional(profissional_id):
         escolha = input("Escolha uma opção: ")
         
         match escolha:
-            case 1:
+            case '1':
                 tipo_servico = input("Tipo de Serviço: ")
                 preco = float(input("Preço: "))
                 adicionar_preco(profissional_id, tipo_servico, preco)
                 print("Preço adicionado com sucesso.")
-            case 2:
+            case '2':
                 id = int(input("ID do Preço a ser atualizado: "))
                 preco = float(input("Novo Preço: "))
                 atualizar_preco(id, preco)
                 print("Preço atualizado com sucesso.")
-            case 3:
+            case '3':
                 exibir_precos(profissional_id)
-            case 4:
+            case '4':
                 print("Saindo...")
                 sys.exit()
             case _:

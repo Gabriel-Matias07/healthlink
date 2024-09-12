@@ -1,4 +1,5 @@
-import sqlite3, os
+import sqlite3, os, datetime
+from Profissional.agendamentos import inserir_dados_agendamento
 
 # Função para criar o banco de dados dos cartões
 def tabela_cartao():
@@ -47,6 +48,21 @@ def inserir_cartao(nome, numero, data_validade, cvv):
     conexao.commit()
     conexao.close()
 
+def emissao_comprovante_cartao(id_cartao, servico, agendamento, valor, data_transacao):
+    diretorio_atual = os.path.abspath(os.path.dirname(__file__))
+    caminho = os.path.join(diretorio_atual, f'comprovante_cartao_{id_cartao}.txt')
+
+    with open(caminho, 'w', encoding='utf-8') as arquivo:
+        arquivo.write("==== Comprovante de Pagamento ====\n")
+        arquivo.write(f"==== ID da Transação: {id_cartao}\n")
+        arquivo.write(f"==== Serviço: {servico}\n")
+        arquivo.write(f"==== Agendamento: {agendamento}\n")
+        arquivo.write(f"==== Valor: {valor}\n")
+        arquivo.write(f"==== Data da Transação: {data_transacao}\n")
+        arquivo.write("===================================\n")
+
+    print(f"Comprovante gerado: {caminho}")
+
 # Função principal para o cadastro
 def main():
     tabela_cartao()
@@ -82,12 +98,19 @@ def main():
             cvv_valido = True
         else:
             print("Erro: CVV inválido, pois deve conter exatamente 3 dígitos e apenas números.")
+
+    valor = input("Valor da transação: ")
+    servico = input("Serviço Escolhido: ")
+    agendamento = input("Data e hora do Agendamento (DD/MM/YYYY HH:MM): ")
+
+    data_transacao = datetime.now().strftime('%d/%m/%Y %H:%M:%S')
     
     if verificar_cartao_existente(numero):
         print("\nErro, cartão já cadastrado!")
     else:
-        inserir_cartao(nome, numero, data_validade, cvv)
-        print("\nCartão salvo com sucesso!")
+        inserir_cartao(nome, numero, data_validade, cvv, valor, data_transacao)
+        emissao_comprovante_cartao(inserir_dados_agendamento(servico, agendamento, valor, data_transacao))
+        print("\nCartão Salvo!")
     
 if __name__ == "__main__":
     main()
