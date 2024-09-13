@@ -48,20 +48,6 @@ def inserir_cartao(nome, numero, data_validade, cvv):
     conexao.commit()
     conexao.close()
 
-def emissao_comprovante_cartao(servico, agendamento, valor, data_transacao):
-    diretorio_atual = os.path.abspath(os.path.dirname(__file__))
-    caminho = os.path.join(diretorio_atual, 'comprovante_cartao_.txt')
-
-    with open(caminho, 'w', encoding='utf-8') as arquivo:
-        arquivo.write("==== Comprovante de Pagamento ====\n")
-        arquivo.write(f"==== Serviço: {servico}\n")
-        arquivo.write(f"==== Agendamento: {agendamento}\n")
-        arquivo.write(f"==== Valor: {valor}\n")
-        arquivo.write(f"==== Data da Transação: {data_transacao}\n")
-        arquivo.write("===================================\n")
-
-    print(f"Comprovante gerado: {caminho}")
-
 # Função principal para o cadastro
 def main():
     tabela_cartao()
@@ -108,7 +94,6 @@ def main():
     else:
         inserir_cartao(nome, numero, data_validade, cvv)
         agendamentos.inserir_dados_agendamento(servico, valor, data_transacao)
-        emissao_comprovante_cartao(servico, valor, data_transacao)
         print("\nCartão Salvo!")
     
 if __name__ == "__main__":

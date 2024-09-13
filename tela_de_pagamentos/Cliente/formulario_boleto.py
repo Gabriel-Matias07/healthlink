@@ -38,7 +38,7 @@ def inserir_boleto(nome, cpf, valor, vencimento):
     conexao.commit()
     conexao.close()
 
-# Função de validação da data
+# Função para validar a data
 def validar_data(data):
     try:
         data_obj = datetime.strptime(data, '%d/%m/%Y')
