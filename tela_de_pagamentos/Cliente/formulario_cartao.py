@@ -35,15 +35,15 @@ def verificar_cartao_existente(numero):
     return cartao is not None
 
 # Função para inserir os dados do cartão no banco de dados
-def inserir_cartao(nome, numero, data_validade, cvv, valor, data_transacao):
+def inserir_cartao(nome, numero, data_validade, cvv):
     diretorio_atual = os.path.abspath(os.path.dirname(__file__))
     caminho_bd = os.path.join(diretorio_atual, 'cartoes.db')
 
     conexao = sqlite3.connect(caminho_bd)
     cursor = conexao.cursor()
 
-    cursor.execute('''insert into cartao (nome, numero, data_validade, cvv, valor, data_transacao)
-                    values (?, ?, ?, ?, ?, ?)''', (nome, numero, data_validade, cvv, valor, data_transacao))
+    cursor.execute('''insert into cartao (nome, numero, data_validade, cvv)
+                    values (?, ?, ?, ?)''', (nome, numero, data_validade, cvv))
 
     conexao.commit()
     conexao.close()
@@ -100,16 +100,15 @@ def main():
 
     valor = input("Valor da transação: ")
     servico = input("Serviço Escolhido: ")
-    agendamento = input("Data e hora do Agendamento (DD/MM/YYYY HH:MM): ")
 
     data_transacao = datetime.now().strftime('%d/%m/%Y %H:%M:%S')
     
     if verificar_cartao_existente(numero):
         print("\nErro, cartão já cadastrado!")
     else:
-        inserir_cartao(nome, numero, data_validade, cvv, valor, data_transacao)
-        agendamentos.inserir_dados_agendamento(servico, agendamento, valor, data_transacao)
-        emissao_comprovante_cartao(servico, agendamento, valor, data_transacao)
+        inserir_cartao(nome, numero, data_validade, cvv)
+        agendamentos.inserir_dados_agendamento(servico, valor, data_transacao)
+        emissao_comprovante_cartao(servico, valor, data_transacao)
         print("\nCartão Salvo!")
     
 if __name__ == "__main__":
