@@ -1,5 +1,5 @@
 import sqlite3, os, datetime
-from Profissional.agendamentos import inserir_dados_agendamento
+from Profissional import agendamentos
 
 # Função para criar o banco de dados dos cartões
 def tabela_cartao():
@@ -48,13 +48,12 @@ def inserir_cartao(nome, numero, data_validade, cvv, valor, data_transacao):
     conexao.commit()
     conexao.close()
 
-def emissao_comprovante_cartao(id_cartao, servico, agendamento, valor, data_transacao):
+def emissao_comprovante_cartao(servico, agendamento, valor, data_transacao):
     diretorio_atual = os.path.abspath(os.path.dirname(__file__))
-    caminho = os.path.join(diretorio_atual, f'comprovante_cartao_{id_cartao}.txt')
+    caminho = os.path.join(diretorio_atual, 'comprovante_cartao_.txt')
 
     with open(caminho, 'w', encoding='utf-8') as arquivo:
         arquivo.write("==== Comprovante de Pagamento ====\n")
-        arquivo.write(f"==== ID da Transação: {id_cartao}\n")
         arquivo.write(f"==== Serviço: {servico}\n")
         arquivo.write(f"==== Agendamento: {agendamento}\n")
         arquivo.write(f"==== Valor: {valor}\n")
@@ -109,6 +108,7 @@ def main():
         print("\nErro, cartão já cadastrado!")
     else:
         inserir_cartao(nome, numero, data_validade, cvv, valor, data_transacao)
+        agendamentos.inserir_dados_agendamento(servico, agendamento, valor, data_transacao)
         emissao_comprovante_cartao(servico, agendamento, valor, data_transacao)
         print("\nCartão Salvo!")
     

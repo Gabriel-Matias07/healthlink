@@ -1,6 +1,6 @@
 from Cliente import formulario_cartao, formulario_boleto, formulario_transferencia
-from Geral import config_precos
-import sys
+from Profissional import config_precos, agendamentos
+import sys, os, sqlite3
 
 def menu_principal():
     print("Bem-vindo à tela de pagamentos, caro usuário.")
@@ -15,10 +15,51 @@ def menu_principal():
             config_precos.exibir_precos()
             opcao_agenda = input("Gostaria de fazer um agendamento? (s/n): ")
             if opcao_agenda.lower() == 's':
-                print("Escolha o seu agendamento: ")
-                menu_formularios()
+                escolher_agendamento()    
         case '2':
+            print("Saindo...")
             sys.exit()
+
+def escolher_agendamento():
+    print("Escolha o seu agendamento: ")
+    servico = input("Insira o tipo de serviço que deseja agendar: ")
+    data_agendamento = input("Insira a data (dd/mm/aaaa): ")
+    valor = obter_valor_servico(servico)
+
+    if valor is None:
+        print(f"Serviço '{servico}' não encontrado. Tente novamente.")
+        return
+    print(f"O valor do serviço '{servico}' é R${valor:.2f}.")
+
+    confirmar = input("Deseja confirmar o agendamento com este valor? (s/n): ")
+    if confirmar.lower() == 's':
+        try:
+            agendamentos.inserir_dados_agendamento(servico, valor, data_agendamento)
+            print("Agendamento realizado com sucesso!")
+            menu_formularios()
+        except Exception as e:
+            print(f"Erro ao realizar o agendamento: {e}")
+    else:
+        print(f"Erro ao realizar o agendamento: {e}")
+
+def obter_valor_servico(tipo_servico):
+    diretorio_atual = os.path.abspath(os.path.dirname(__file__))
+    caminho_bd = os.path.join(diretorio_atual, 'precos.db')
+    
+    conexao = sqlite3.connect(caminho_bd)
+    cursor = conexao.cursor()
+    
+    cursor.execute('''
+        SELECT preco FROM precos WHERE tipo_servico = ?
+    ''', (tipo_servico,))
+    
+    resultado = cursor.fetchone()
+    conexao.close()
+    
+    if resultado:
+        return resultado[0]
+    else:
+        return None
 
 def menu_formularios():
     print("Escolha uma opção de pagamento:")

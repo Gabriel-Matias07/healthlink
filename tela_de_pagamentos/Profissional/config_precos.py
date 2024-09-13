@@ -9,24 +9,22 @@ def tabela_precos():
     
     cursor.execute('''CREATE TABLE IF NOT EXISTS precos (
                         id INTEGER PRIMARY KEY AUTOINCREMENT,
-                        profissional_id INTEGER,
                         tipo_servico TEXT,
-                        preco TEXT,
-                        FOREIGN KEY (profissional_id) REFERENCES profissionais(id)
+                        preco TEXT
                     )''')
     
     conexao.commit()
     conexao.close()
 
-def adicionar_preco(profissional_id, tipo_servico, preco):
+def adicionar_preco(tipo_servico, preco):
     diretorio_atual = os.path.abspath(os.path.dirname(__file__))
     caminho_bd = os.path.join(diretorio_atual, 'precos.db')
     
     conexao = sqlite3.connect(caminho_bd)
     cursor = conexao.cursor()
     
-    cursor.execute('''INSERT INTO precos (profissional_id, tipo_servico, preco)
-                      VALUES (?, ?, ?)''', (profissional_id, tipo_servico, preco))
+    cursor.execute('''INSERT INTO precos (tipo_servico, preco)
+                      VALUES (?, ?)''', (tipo_servico, preco))
     
     conexao.commit()
     conexao.close()
@@ -43,21 +41,25 @@ def atualizar_preco(id, preco):
     conexao.commit()
     conexao.close()
 
-def exibir_precos(profissional_id):
+def exibir_precos():
     diretorio_atual = os.path.abspath(os.path.dirname(__file__))
     caminho_bd = os.path.join(diretorio_atual, 'precos.db')
     
     conexao = sqlite3.connect(caminho_bd)
     cursor = conexao.cursor()
-    
-    cursor.execute('''SELECT tipo_servico, preco FROM precos WHERE profissional_id = ?''', (profissional_id,))
+
+    cursor.execute('''SELECT tipo_servico, preco FROM precos''')
     precos = cursor.fetchall()
     
     conexao.close()
     
-    print("== Preços do Profissional ==")
+    print("== Preços dos Serviços ==")
     for tipo_servico, preco in precos:
-        print(f"{tipo_servico}: R${preco:.2f}")
+        try:
+            preco = float(preco)
+            print(f"{tipo_servico}: R${preco:.2f}")
+        except ValueError:
+            print(f"Erro ao formatar o preço para o serviço: {tipo_servico}")
 
 if __name__ == "__main__":
     tabela_precos()
