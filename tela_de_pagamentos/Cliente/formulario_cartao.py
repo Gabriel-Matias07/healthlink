@@ -1,6 +1,5 @@
 import sqlite3, os, datetime
-from Profissional import agendamentos
-
+import Profissional.agendamentos
 # Função para criar o banco de dados dos cartões
 def tabela_cartao():
     diretorio_atual = os.path.abspath(os.path.dirname(__file__))
@@ -93,7 +92,7 @@ def main():
         print("\nErro, cartão já cadastrado!")
     else:
         inserir_cartao(nome, numero, data_validade, cvv)
-        agendamentos.inserir_dados_agendamento(servico, valor, data_transacao)
+        Profissional.agendamentos.inserir_dados_agendamento(servico, valor, data_transacao)
         print("\nCartão Salvo!")
     
 if __name__ == "__main__":
