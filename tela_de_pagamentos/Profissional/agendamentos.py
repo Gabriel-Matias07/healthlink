@@ -8,9 +8,9 @@ def criar_tabela_agendamentos():
     conexao = sqlite3.connect(caminho_bd)
     cursor = conexao.cursor()
     cursor.execute('''CREATE TABLE IF NOT EXISTS consulta (
-                        id INTEGER PRIMARY KEY,
+                        id INTEGER PRIMARY KEY AUTOINCREMENT,
                         servico TEXT,
-                        valor TEXT,
+                        valor REAL,
                         data_agendamento TEXT)''')
     conexao.commit()
     conexao.close()
@@ -22,7 +22,7 @@ def inserir_dados_agendamento(servico, valor, data_agendamento):
     
     conexao = sqlite3.connect(caminho_bd)
     cursor = conexao.cursor()
-    cursor.execute('''INSERT INTO agendamento (servico, valor, data_agendamento)
+    cursor.execute('''INSERT INTO consulta (servico, valor, data_agendamento)
                       VALUES (?, ?, ?)''', (servico, valor, data_agendamento))
     conexao.commit()
     id = cursor.lastrowid

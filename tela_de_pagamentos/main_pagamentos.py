@@ -20,31 +20,8 @@ def menu_principal():
             print("Saindo...")
             sys.exit()
 
-def escolher_agendamento():
-    print("Escolha o seu agendamento: ")
-    servico = input("Insira o tipo de serviço que deseja agendar: ")
-    data_agendamento = input("Insira a data (dd/mm/aaaa): ")
-    valor = obter_valor_servico(servico)
-
-    if valor is None:
-        print(f"Serviço '{servico}' não encontrado. Tente novamente.")
-        return
-    print(f"O valor do serviço '{servico}' é R${valor:.2f}.")
-
-    confirmar = input("Deseja confirmar o agendamento com este valor? (s/n): ")
-    if confirmar.lower() == 's':
-        try:
-            agendamentos.inserir_dados_agendamento(servico, valor, data_agendamento)
-            print("Agendamento realizado com sucesso!")
-            menu_formularios()
-        except Exception as e:
-            print(f"Erro ao realizar o agendamento: {e}")
-    else:
-        print(f"Erro ao realizar o agendamento: {e}")
-
 def obter_valor_servico(tipo_servico):
-    diretorio_atual = os.path.abspath(os.path.dirname(__file__))
-    caminho_bd = os.path.join(diretorio_atual, 'precos.db')
+    caminho_bd = 'C:/Users/rodri/OneDrive/Área de Trabalho/Projeto/healthlink/tela_de_pagamentos/Profissional/precos.db'
     
     conexao = sqlite3.connect(caminho_bd)
     cursor = conexao.cursor()
@@ -60,6 +37,34 @@ def obter_valor_servico(tipo_servico):
         return resultado[0]
     else:
         return None
+    
+def escolher_agendamento():
+    print("Escolha o seu agendamento: ")
+    servico = input("Insira o tipo de serviço que deseja agendar: ")
+    data_agendamento = input("Insira a data (dd/mm/aaaa): ")
+    valor = obter_valor_servico(servico)
+
+    if valor is None:
+        print(f"Serviço '{servico}' não encontrado. Tente novamente.")
+        return
+
+    try:
+        valor_num = float(valor)
+        print(f"O valor do serviço '{servico}' é R${valor_num:.2f}.")
+    except ValueError:
+        print(f"Valor retornado para o serviço '{servico}' é inválido: {valor}")
+        return
+
+    confirmar = input("Deseja confirmar o agendamento com este valor? (s/n): ")
+    if confirmar.lower() == 's':
+        try:
+            agendamentos.inserir_dados_agendamento(servico, valor_num, data_agendamento)
+            print("Agendamento realizado com sucesso!")
+            menu_formularios()
+        except Exception as e:
+            print(f"Erro ao realizar o agendamento: {e}")
+    else:
+        print("Agendamento não confirmado.")
 
 def menu_formularios():
     print("Escolha uma opção de pagamento:")

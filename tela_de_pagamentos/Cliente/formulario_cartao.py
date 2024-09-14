@@ -1,5 +1,5 @@
 import sqlite3, os, datetime
-import Profissional.agendamentos
+
 # Função para criar o banco de dados dos cartões
 def tabela_cartao():
     diretorio_atual = os.path.abspath(os.path.dirname(__file__))
@@ -82,17 +82,11 @@ def main():
             cvv_valido = True
         else:
             print("Erro: CVV inválido, pois deve conter exatamente 3 dígitos e apenas números.")
-
-    valor = input("Valor da transação: ")
-    servico = input("Serviço Escolhido: ")
-
-    data_transacao = datetime.now().strftime('%d/%m/%Y %H:%M:%S')
     
     if verificar_cartao_existente(numero):
         print("\nErro, cartão já cadastrado!")
     else:
         inserir_cartao(nome, numero, data_validade, cvv)
-        Profissional.agendamentos.inserir_dados_agendamento(servico, valor, data_transacao)
         print("\nCartão Salvo!")
     
 if __name__ == "__main__":
