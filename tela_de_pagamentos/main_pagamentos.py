@@ -40,6 +40,7 @@ def obter_valor_servico(tipo_servico):
     
 def escolher_agendamento():
     print("Escolha o seu agendamento: ")
+    nome = input("Digite o seu nome completo: ")
     servico = input("Insira o tipo de serviço que deseja agendar: ")
     data_agendamento = input("Insira a data (dd/mm/aaaa): ")
     valor = obter_valor_servico(servico)
@@ -58,7 +59,7 @@ def escolher_agendamento():
     confirmar = input("Deseja confirmar o agendamento com este valor? (s/n): ")
     if confirmar.lower() == 's':
         try:
-            agendamentos.inserir_dados_agendamento(servico, valor_num, data_agendamento)
+            agendamentos.inserir_dados_agendamento(nome, servico, valor_num, data_agendamento)
             print("Agendamento realizado com sucesso!")
             menu_formularios()
         except Exception as e:
