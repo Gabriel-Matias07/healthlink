@@ -21,7 +21,7 @@ def menu_principal():
             sys.exit()
 
 def obter_valor_servico(tipo_servico):
-    caminho_bd = 'C:/Users/rodri/OneDrive/Área de Trabalho/Projeto/healthlink/tela_de_pagamentos/Profissional/precos.db'
+    caminho_bd = os.path.join(os.path.dirname(__file__), 'Profissional', 'precos.db')
     
     conexao = sqlite3.connect(caminho_bd)
     cursor = conexao.cursor()
@@ -39,7 +39,7 @@ def obter_valor_servico(tipo_servico):
         return None
     
 def escolher_agendamento():
-    print("Escolha o seu agendamento: ")
+    print("Faça o seu agendamento: ")
     nome = input("Digite o seu nome completo: ")
     servico = input("Insira o tipo de serviço que deseja agendar: ")
     data_agendamento = input("Insira a data (dd/mm/aaaa): ")
