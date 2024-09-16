@@ -13,12 +13,16 @@ def menu_principal():
     match escolha:
         case '1':
             config_precos.exibir_precos()
-            opcao_agenda = input("Gostaria de fazer um agendamento? (s/n): ")
+            opcao_agenda = input("\nGostaria de fazer um agendamento? (s/n): ")
             if opcao_agenda.lower() == 's':
                 escolher_agendamento()    
         case '2':
             print("Saindo...")
             sys.exit()
+
+def limpar_terminal():
+    if os.name == 'nt':
+        os.system('cls')
 
 def obter_valor_servico(tipo_servico):
     caminho_bd = os.path.join(os.path.dirname(__file__), 'Profissional', 'precos.db')
@@ -39,21 +43,21 @@ def obter_valor_servico(tipo_servico):
         return None
     
 def escolher_agendamento():
-    print("Faça o seu agendamento: ")
-    nome = input("Digite o seu nome completo: ")
+    nome = input("\nDigite o seu nome completo: ")
+    config_precos.exibir_precos()
     servico = input("Insira o tipo de serviço que deseja agendar: ")
     data_agendamento = input("Insira a data (dd/mm/aaaa): ")
     valor = obter_valor_servico(servico)
 
-    if valor is None:
-        print(f"Serviço '{servico}' não encontrado. Tente novamente.")
+    while valor is None:
+        print(f"\nServiço '{servico}' não encontrado. Tente novamente.")
         return
 
     try:
         valor_num = float(valor)
-        print(f"O valor do serviço '{servico}' é R${valor_num:.2f}.")
+        print(f"\nO valor do serviço '{servico}' é R${valor_num:.2f}.")
     except ValueError:
-        print(f"Valor retornado para o serviço '{servico}' é inválido: {valor}")
+        print(f"\nValor retornado para o serviço '{servico}' é inválido: {valor}")
         return
 
     confirmar = input("Deseja confirmar o agendamento com este valor? (s/n): ")

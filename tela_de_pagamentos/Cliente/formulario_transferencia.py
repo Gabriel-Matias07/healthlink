@@ -133,6 +133,7 @@ def main():
     if not verificacao(nome, conta):
         id = inserir_dados(nome, cpf, banco, agencia, conta, valor, data)
         print("Dados da transferência salvos com sucesso.")
+        print("\nSua consulta foi marcada com sucesso!")
         emissao_comprovante(id, nome, cpf, banco, agencia, conta, valor, data)
     else:
         print("Este registro já existe no banco de dados.")
