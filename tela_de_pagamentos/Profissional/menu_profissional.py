@@ -8,7 +8,7 @@ def menu_profissional():
         print("3. Exibir Preços")
         print("4. Sair")
         
-        escolha = input("Escolha uma opção: ")
+        escolha = input("\nEscolha uma opção: ")
         
         match escolha:
             case '1':
