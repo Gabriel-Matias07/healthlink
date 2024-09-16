@@ -1,0 +1,10 @@
+==== Comprovante de Transferência ====
+==== ID da Transação: 1
+==== Nome: gfgfg
+==== CPF: 32132132121
+==== Banco: Banco do Brasil
+==== Agência: 3212
+==== Conta: 654564
+==== Valor: 250
+==== Data: 10/10/2024
+======================================
