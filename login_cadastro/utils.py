@@ -1,4 +1,4 @@
-import sys,time,os, db_utils
+import sys,time,os
 
 #Módulo para funções utilitárias que podem ser usadas em várias partes do programa
 
@@ -33,3 +33,8 @@ def escrevendo_texto(texto, atraso):
         sys.stdout.flush()
         time.sleep(atraso)
     print()
+
+#Retorna qual opção foi selecionada na tela inicial de login, auxiliando as outros telas a se adaptarem
+def repassar_user_ou_prof(info):
+    print(f'{info} função sucesso!')
+    return info
