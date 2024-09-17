@@ -1,5 +1,7 @@
 import sys,time
 import user,professional,utils
+from tela_de_pagamentos.main_usuario import menu_principal
+print(menu_principal())
 
 #Módulo que vai chamar as funções principais de outros módulos
 

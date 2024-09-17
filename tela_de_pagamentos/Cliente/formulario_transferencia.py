@@ -46,10 +46,23 @@ def verificacao(nome, conta):
     conexao.close()
     return resultado is not None
 
-def emissao_comprovante(id, nome, cpf, banco, agencia, conta, valor, data):
-    diretorio_atual = os.path.abspath(os.path.dirname(__file__))
-    caminho = os.path.join(diretorio_atual, f'comprovante_{id}.txt')
+import os
 
+def emissao_comprovante(id, nome, cpf, banco, agencia, conta, valor, data):
+    # Obtém o diretório atual do arquivo
+    diretorio_atual = os.path.abspath(os.path.dirname(__file__))
+    
+    # Caminho da pasta 'comprovantes' dentro de 'Cliente'
+    pasta_comprovantes = os.path.join(diretorio_atual, 'comprovantes')
+    
+    # Verifica se a pasta existe, se não, cria a pasta
+    if not os.path.exists(pasta_comprovantes):
+        os.makedirs(pasta_comprovantes)
+
+    # Caminho completo para o arquivo do comprovante
+    caminho = os.path.join(pasta_comprovantes, f'comprovante_{id}.txt')
+
+    # Escreve o comprovante no arquivo
     with open(caminho, 'w', encoding='utf-8') as arquivo:
         arquivo.write("==== Comprovante de Transferência ====\n")
         arquivo.write(f"==== ID da Transação: {id}\n")
@@ -63,6 +76,7 @@ def emissao_comprovante(id, nome, cpf, banco, agencia, conta, valor, data):
         arquivo.write("======================================\n")
 
     print(f"Comprovante emitido: {caminho}")
+
 
 #Função para validação do cpf
 def validar_cpf(cpf):
