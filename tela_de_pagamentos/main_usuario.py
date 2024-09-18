@@ -1,5 +1,5 @@
-from cliente import formulario_cartao, formulario_boleto, formulario_transferencia
-from profissional import config_precos, agendamentos
+from tela_de_pagamentos.cliente import formulario_cartao, formulario_boleto, formulario_transferencia
+from tela_de_pagamentos.profissional import config_precos, agendamentos
 import sys, os, sqlite3
 from login_cadastro.main import escolher_opcao
 
