@@ -1,6 +1,8 @@
-from Cliente import formulario_cartao, formulario_boleto, formulario_transferencia
-from Profissional import config_precos, agendamentos
+from cliente import formulario_cartao, formulario_boleto, formulario_transferencia
+from profissional import config_precos, agendamentos
 import sys, os, sqlite3
+from login_cadastro.main import escolher_opcao
+
 
 def menu_principal():
     while True:
