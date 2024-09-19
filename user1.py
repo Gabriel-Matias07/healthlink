@@ -1,7 +1,7 @@
 #Módulo para funções relacionadas ao usuário
 
 import pwinput
-import utils,db_utils,redirect
+import utils1, db_utils1, redirect1
 
 #Função que permite usuário escolher entre login, cadastro no sistema ou encerrar programa
 def usuario(retorno):
@@ -9,11 +9,11 @@ def usuario(retorno):
     escolha = input("Selecione 1 para login, 2 para cadastro ou 0 para encerrar: ")
     if escolha == '1':
         print(retorno)
-        return db_utils.login_usuario()
+        return db_utils1.login_usuario()
     elif escolha == '2':
-        return cadastro_usuario(), redirect.redirecionar(retorno)
+        return cadastro_usuario(), redirect1.redirecionar(retorno)
     elif escolha == '0':
-        return utils.encerrar()
+        return utils1.encerrar()
     else:
         print("Resposta Inválida. ")
         return usuario()
@@ -24,9 +24,9 @@ def cadastro_usuario():
     email = cadastro_email()
     senha = cadastro_senha()
     confirma_senha(senha)
-    utils.carregamento()
-    db_utils.inserir_bd_usuario(nome, email, senha)
-    utils.msg_sucesso()
+    utils1.carregamento()
+    db_utils1.inserir_bd_usuario(nome, email, senha)
+    utils1.msg_sucesso()
 
 def cadastro_nome():
     nome = input("Digite o seu nome completo: ")
@@ -64,7 +64,7 @@ def confirma_senha(senha):
 def recuperar_senha_usuario(email_login):
     email_base = email_login
     nova_senha = pwinput.pwinput(prompt = f'Digita uma nova senha para o email {email_login}: ')
-    return db_utils.inserir_nova_senha_usuario(nova_senha, email_base)
+    return db_utils1.inserir_nova_senha_usuario(nova_senha, email_base)
 
 #Função de formulário do usuário
 def form_usuario(dado_retornado):
@@ -99,8 +99,8 @@ def form_usuario(dado_retornado):
         resposta = int(input("Digite o número das suas preferências e/ou '0' para encerrar: "))
     
         if resposta == 0:
-            utils.carregamento() #
-            db_utils.salvar_form_usuario(telefone, estado, cidade, bairro, numero_casa)
+            utils1.carregamento() #
+            db_utils1.salvar_form_usuario(telefone, estado, cidade, bairro, numero_casa)
             break
         if 1 <= resposta <= len(preferencias_contratacao_user):
             preferencia_selecionada = preferencias_contratacao_user[resposta - 1]

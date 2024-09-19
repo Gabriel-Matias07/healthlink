@@ -1,5 +1,5 @@
 import sys,time
-import user,professional,utils
+import user1, professional1, utils1
 
 #Módulo que vai chamar as funções principais de outros módulos
 
@@ -25,14 +25,14 @@ def escolher_opcao():
     print("\n")
     if escolha == '1':
         retorno = "usuário"
-        utils.repassar_user_ou_prof(retorno)
-        return user.usuario(retorno)
+        utils1.repassar_user_ou_prof(retorno)
+        return user1.usuario(retorno)
     elif escolha == '2':
         retorno = "profissional"
-        utils.repassar_user_ou_prof(retorno)
-        return professional.profissional(retorno)
+        utils1.repassar_user_ou_prof(retorno)
+        return professional1.profissional(retorno)
     elif escolha == '0':
-        return utils.encerrar()
+        return utils1.encerrar()
     else:
         print("Resposta inválida. ")
         return escolher_opcao()
