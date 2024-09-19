@@ -1,6 +1,7 @@
 import formulario_cartao3, formulario_boleto3, formulario_transferencia3
 import config_precos3, agendamentos3
 import sys, os, sqlite3
+from utils1 import passar_nome_user
 
 def menu_principal():
     while True:
@@ -57,7 +58,7 @@ def obter_valor_servico(tipo_servico):
         return None
     
 def escolher_agendamento(precos):
-    nome = input("\nDigite o seu nome completo: ")
+    nome = passar_nome_user()
     
     servicos = list(precos.keys())
     if not servicos:
@@ -127,7 +128,7 @@ def escolher_agendamento(precos):
     else:
         print("Agendamento não confirmado.")
 
-def menu_formularios():
+def menu_formularios(servico, valor_num):
     print("Escolha uma opção de pagamento:")
     print("1 - Cartão de crédito")
     print("2 - Boleto")
@@ -142,7 +143,7 @@ def menu_formularios():
         case '2':
             formulario_boleto3.main()
         case '3':
-            formulario_transferencia3.main()
+            formulario_transferencia3.main(servico, valor_num)
         case '4':
             return
         case _:

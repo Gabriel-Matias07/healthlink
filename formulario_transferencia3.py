@@ -1,5 +1,6 @@
 import sqlite3, os
 from datetime import datetime
+from utils1 import passar_nome_user
 
 #Função para criar o banco de dados das transferências
 def criar_tabela():
@@ -116,7 +117,7 @@ def validar_valor(valor):
 def main():
     criar_tabela()
     print("== Formulário de Transferência ==")
-    nome = input("Nome completo: ")
+    nome = passar_nome_user()
 
     cpf = input("CPF: ")
     while not validar_cpf(cpf):
