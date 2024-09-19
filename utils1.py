@@ -38,5 +38,7 @@ def escrevendo_texto(texto, atraso):
 def repassar_user_ou_prof(info):
     print(f'{info} função sucesso!')
     return info
-def passar_nome(nome):
+def passar_nome_user(nome):
+    return nome
+def passar_nome_prof(nome):
     return nome
