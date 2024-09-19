@@ -1,7 +1,6 @@
-from cliente import formulario_cartao, formulario_boleto, formulario_transferencia
-from profissional import config_precos, agendamentos
+import formulario_cartao3, formulario_boleto3, formulario_transferencia3
+import config_precos3, agendamentos3
 import sys, os, sqlite3
-from login_cadastro.main1 import escolher_opcao
 
 def menu_principal():
     while True:
@@ -13,7 +12,7 @@ def menu_principal():
 
         match escolha:
             case '1':
-                precos = config_precos.exibir_precos()
+                precos = config_precos3.exibir_precos()
                 
                 if not precos:
                     print("Não há serviços disponíveis no momento.")
@@ -40,7 +39,7 @@ def verificar_datas_disponiveis(precos):
     return False
 
 def obter_valor_servico(tipo_servico):
-    caminho_bd = os.path.join(os.path.dirname(__file__), 'Profissional', 'precos.db')
+    caminho_bd = os.path.join(os.path.dirname(__file__), 'precos.db')
     
     conexao = sqlite3.connect(caminho_bd)
     cursor = conexao.cursor()
@@ -120,7 +119,7 @@ def escolher_agendamento(precos):
     confirmar = input("Deseja confirmar o agendamento com este valor? (digite 1 para confirmar ou 0 para encerrar): ")
     if confirmar == '1':
         try:
-            agendamentos.inserir_dados_agendamento(nome, servico, valor_num, data_agendamento)
+            agendamentos3.inserir_dados_agendamento(nome, servico, valor_num, data_agendamento)
             print("Agendamento realizado com sucesso!")
             menu_formularios()
         except Exception as e:
@@ -139,11 +138,11 @@ def menu_formularios():
     
     match opcao:
         case '1':
-            formulario_cartao.main()
+            formulario_cartao3.main()
         case '2':
-            formulario_boleto.main()
+            formulario_boleto3.main()
         case '3':
-            formulario_transferencia.main()
+            formulario_transferencia3.main()
         case '4':
             return
         case _:
