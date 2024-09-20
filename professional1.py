@@ -77,12 +77,14 @@ def form_profissional(dado_retornado):
     cidade = input("Cidade: ")
     bairro = input("Bairro: ")
     numero_casa = input("Número da casa: ")
+    horario = input("Digite o horário no formato 00:00h: ")
 
     informacoes_pessoais.append(telefone)
     informacoes_pessoais.append(estado)
     informacoes_pessoais.append(cidade)
     informacoes_pessoais.append(bairro)
     informacoes_pessoais.append(numero_casa)
+    informacoes_pessoais.append(horario)
 
     utils1.passar_informacoes_profissional(informacoes_pessoais)
     db_utils1.salvar_form_profissional(telefone, estado, cidade, bairro, numero_casa)

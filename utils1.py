@@ -49,6 +49,6 @@ def passar_nome_prof(nome):
 def passar_preferencias_contratacao_user(list):
     return list
 
-#Retorna uma lista contendo telefone, estado, cidade, bairro, telefone, numero_casa
+#Retorna uma lista contendo telefone, estado, cidade, bairro, telefone, numero_casa, horario
 def passar_informacoes_profissional(list):
     return list
