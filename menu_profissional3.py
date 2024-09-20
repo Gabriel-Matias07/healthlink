@@ -1,5 +1,6 @@
 import sys
 from config_precos3 import adicionar_preco, atualizar_preco, exibir_precos, adicionar_datas_disponiveis, remover_data_disponivel
+from utils1 import encerrar, clear
 
 def menu_profissional():
     while True:
@@ -30,13 +31,14 @@ def menu_profissional():
                     print("Preço adicionado com sucesso.")
                 else:
                     print("Nenhuma data foi adicionada.")
+                clear()
 
             case '2':
                 id = int(input("ID do Preço a ser atualizado: "))
                 preco = float(input("Novo Preço: "))
                 atualizar_preco(id, preco)
                 print("Preço atualizado com sucesso.")
-
+                clear()
             case '3':
                 id = int(input("ID do Preço para adicionar datas: "))
                 novas_datas = []
@@ -52,21 +54,22 @@ def menu_profissional():
                     print("Datas adicionadas com sucesso.")
                 else:
                     print("Nenhuma data foi adicionada.")
+                clear()
             case '4':
                 id = int(input("ID do Preço para remover data: "))
                 data = input("Data a ser removida: ")
                 remover_data_disponivel(id, data)
                 print("Data removida com sucesso.")
-
+                clear()
             case '5':
                 exibir_precos()
-
             case '6':
-                print("Saindo...")
+                encerrar()
                 sys.exit()
 
             case _:
                 print("Opção inválida. Tente novamente.")
+                clear()
 
 if __name__ == "__main__":
     menu_profissional()

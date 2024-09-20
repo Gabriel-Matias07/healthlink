@@ -49,21 +49,15 @@ def verificacao(nome, conta):
 
 import os
 
-def emissao_comprovante(id, nome, cpf, banco, agencia, conta, valor, data):
-    # Obtém o diretório atual do arquivo
+def emissao_comprovante(id, nome, cpf, banco, agencia, conta, valor_servico, data):
     diretorio_atual = os.path.abspath(os.path.dirname(__file__))
-    
-    # Caminho da pasta 'comprovantes' dentro de 'Cliente'
     pasta_comprovantes = os.path.join(diretorio_atual, 'comprovantes')
     
-    # Verifica se a pasta existe, se não, cria a pasta
     if not os.path.exists(pasta_comprovantes):
         os.makedirs(pasta_comprovantes)
 
-    # Caminho completo para o arquivo do comprovante
     caminho = os.path.join(pasta_comprovantes, f'comprovante_{id}.txt')
 
-    # Escreve o comprovante no arquivo
     with open(caminho, 'w', encoding='utf-8') as arquivo:
         arquivo.write("==== Comprovante de Transferência ====\n")
         arquivo.write(f"==== ID da Transação: {id}\n")
@@ -72,7 +66,7 @@ def emissao_comprovante(id, nome, cpf, banco, agencia, conta, valor, data):
         arquivo.write(f"==== Banco: {banco}\n")
         arquivo.write(f"==== Agência: {agencia}\n")
         arquivo.write(f"==== Conta: {conta}\n")
-        arquivo.write(f"==== Valor: {valor}\n")
+        arquivo.write(f"==== Valor: {valor_servico}\n")
         arquivo.write(f"==== Data: {data}\n")
         arquivo.write("======================================\n")
 
@@ -105,19 +99,11 @@ def validar_data(data):
     except ValueError:
         return False
 
-#Função para validação do valor    
-def validar_valor(valor):
-    try:
-        valor_float = float(valor)
-        return valor_float > 0
-    except ValueError:
-        return False
-
 #Função principal para o usuário preencher o formulario
-def main():
+def main(valor):
     criar_tabela()
     print("== Formulário de Transferência ==")
-    nome = passar_nome_user()
+    nome = passar_nome_user("exemplo")
 
     cpf = input("CPF: ")
     while not validar_cpf(cpf):
@@ -135,10 +121,7 @@ def main():
         print("Conta inválida, deve conter apenas números sem o dígito.")
         conta = input("Conta: ")
 
-    valor = input("Valor da Transferência: ")
-    while not validar_valor(valor):
-        print("Valor inválido. O valor deve ser positivo e apenas com números.")
-        valor = input("Valor da transferência: ")
+    valor_servico = valor
 
     data = input("Data da Transferência (DD/MM/YYYY): ")
     while not validar_data(data):
@@ -146,12 +129,12 @@ def main():
         data = input("Data da transferência (DD/MM/YYYY): ")
 
     if not verificacao(nome, conta):
-        id = inserir_dados(nome, cpf, banco, agencia, conta, valor, data)
+        id = inserir_dados(nome, cpf, banco, agencia, conta, valor_servico, data)
         print("Dados da transferência salvos com sucesso.")
         print("\nSua consulta foi marcada com sucesso!")
-        emissao_comprovante(id, nome, cpf, banco, agencia, conta, valor, data)
+        emissao_comprovante(id, nome, cpf, banco, agencia, conta, valor_servico, data)
     else:
         print("Este registro já existe no banco de dados.")
 
 if __name__ == "__main__":
-    main()
+    main(0)

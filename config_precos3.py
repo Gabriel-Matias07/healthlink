@@ -23,6 +23,23 @@ def tabela_precos():
     conexao.commit()
     conexao.close()
 
+def obter_valor_servico(tipo_servico):
+    diretorio_atual = os.path.abspath(os.path.dirname(__file__))
+    caminho_bd = os.path.join(diretorio_atual, 'precos.db')
+
+    conexao = sqlite3.connect(caminho_bd)
+    cursor = conexao.cursor()
+
+    cursor.execute('''SELECT preco FROM precos WHERE tipo_servico = ?''', (tipo_servico,))
+    resultado = cursor.fetchone()
+
+    conexao.close()
+    print(f"Buscando valor para o serviço: {tipo_servico}")
+    if resultado:
+        return resultado[0]
+    return None
+    
+
 def adicionar_preco(tipo_servico, preco, datas_disponiveis):
     diretorio_atual = os.path.abspath(os.path.dirname(__file__))
     caminho_bd = os.path.join(diretorio_atual, 'precos.db')

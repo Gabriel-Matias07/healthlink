@@ -1,7 +1,5 @@
-import formulario_cartao3, formulario_boleto3, formulario_transferencia3
-import config_precos3, agendamentos3
-import sys, os, sqlite3
-from utils1 import passar_nome_user
+import sys, config_precos3, agendamentos3, formulario_boleto3, formulario_cartao3, formulario_transferencia3
+from utils1 import passar_nome_user, encerrar
 
 def menu_principal():
     while True:
@@ -14,7 +12,7 @@ def menu_principal():
         match escolha:
             case '1':
                 precos = config_precos3.exibir_precos()
-                
+
                 if not precos:
                     print("Não há serviços disponíveis no momento.")
                     continue
@@ -25,9 +23,9 @@ def menu_principal():
 
                 opcao_agenda = input("\nGostaria de fazer um agendamento? (digite 1 para continuar ou 0 para sair): ")
                 if opcao_agenda == '1':
-                    escolher_agendamento(precos)    
+                    escolher_agendamento(precos)
             case '2':
-                print("Saindo...")
+                encerrar()
                 sys.exit()
             case _:
                 print("Opção inválida. Tente novamente.")
@@ -36,29 +34,10 @@ def verificar_datas_disponiveis(precos):
     for servico in precos.values():
         if servico["datas"]:
             return True
-    
     return False
 
-def obter_valor_servico(tipo_servico):
-    caminho_bd = os.path.join(os.path.dirname(__file__), 'precos.db')
-    
-    conexao = sqlite3.connect(caminho_bd)
-    cursor = conexao.cursor()
-    
-    cursor.execute('''
-        SELECT preco FROM precos WHERE tipo_servico = ?
-    ''', (tipo_servico,))
-    
-    resultado = cursor.fetchone()
-    conexao.close()
-    
-    if resultado:
-        return resultado[0]
-    else:
-        return None
-    
 def escolher_agendamento(precos):
-    nome = passar_nome_user()
+    nome = passar_nome_user("exemplo")
     
     servicos = list(precos.keys())
     if not servicos:
@@ -70,7 +49,7 @@ def escolher_agendamento(precos):
         print(f"{i}. {servico}")
 
     escolha_servico = input("Escolha o número do serviço desejado: ")
-    
+
     try:
         escolha_index = int(escolha_servico) - 1
         if 0 <= escolha_index < len(servicos):
@@ -92,7 +71,7 @@ def escolher_agendamento(precos):
         print(f"{i}. {data}")
 
     escolha_data = input("Escolha o número da data desejada: ")
-    
+
     try:
         escolha_index = int(escolha_data) - 1
         if 0 <= escolha_index < len(datas_disponiveis):
@@ -104,8 +83,8 @@ def escolher_agendamento(precos):
         print("Entrada inválida. Tente novamente.")
         return
 
-    valor = obter_valor_servico(servico)
-    
+    valor = config_precos3.obter_valor_servico(servico)
+
     if valor is None:
         print(f"\nServiço '{servico}' não encontrado. Tente novamente.")
         return
@@ -122,13 +101,13 @@ def escolher_agendamento(precos):
         try:
             agendamentos3.inserir_dados_agendamento(nome, servico, valor_num, data_agendamento)
             print("Agendamento realizado com sucesso!")
-            menu_formularios()
+            menu_formularios(valor_num)
         except Exception as e:
             print(f"Erro ao realizar o agendamento: {e}")
     else:
         print("Agendamento não confirmado.")
 
-def menu_formularios(servico, valor_num):
+def menu_formularios(valor):
     print("Escolha uma opção de pagamento:")
     print("1 - Cartão de crédito")
     print("2 - Boleto")
@@ -143,7 +122,7 @@ def menu_formularios(servico, valor_num):
         case '2':
             formulario_boleto3.main()
         case '3':
-            formulario_transferencia3.main(servico, valor_num)
+            formulario_transferencia3.main(valor)
         case '4':
             return
         case _:
