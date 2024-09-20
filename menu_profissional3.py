@@ -2,6 +2,7 @@ import sys
 from config_precos3 import adicionar_preco, atualizar_preco, exibir_precos, adicionar_datas_disponiveis, remover_data_disponivel, tabela_precos
 from utils1 import encerrar, clear
 
+#Função principal do profissional, onde ele vai escolher o que fazer com seus serviços e valores
 def menu_profissional():
     while True:
         print("\n== Menu do Profissional ==")

@@ -1,6 +1,7 @@
 import sys, config_precos3, agendamentos3, formulario_boleto3, formulario_cartao3, formulario_transferencia3
 from utils1 import passar_nome_user, encerrar, clear
 
+#Função principal para o usuário, onde ele vai marcar a sua consulta
 def menu_principal():
     while True:
         print("Bem-vindo à tela de pagamentos, caro usuário.")
@@ -33,12 +34,14 @@ def menu_principal():
             case _:
                 print("Opção inválida. Tente novamente.")
 
+#Função para verificação de datas disponíveis
 def verificar_datas_disponiveis(precos):
     for servico in precos.values():
         if servico["datas"]:
             return True
     return False
 
+#Função para marcar a consulta
 def escolher_agendamento(precos):
     nome = passar_nome_user("exemplo")
     
@@ -112,6 +115,7 @@ def escolher_agendamento(precos):
     else:
         print("Agendamento não confirmado.")
 
+#Função para escolher a opção de pagamento
 def menu_formularios(valor):
     print("Escolha uma opção de pagamento:")
     print("1 - Cartão de crédito")

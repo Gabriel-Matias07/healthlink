@@ -49,6 +49,7 @@ def verificacao(nome, conta):
 
 import os
 
+#Função para emissão do comprovante de pagamento
 def emissao_comprovante(id, nome, cpf, banco, agencia, conta, valor_servico, data):
     diretorio_atual = os.path.abspath(os.path.dirname(__file__))
     pasta_comprovantes = os.path.join(diretorio_atual, 'comprovantes')
