@@ -36,7 +36,6 @@ def escrevendo_texto(texto, atraso):
 
 #Retorna qual opção foi selecionada na tela inicial de login, auxiliando as outros telas a se adaptarem
 def repassar_user_ou_prof(info):
-    print(f'{info} função sucesso!')
     return info
 
 #Funções que retornam o nome completo do usuário para serem chamadas em outros módulos
