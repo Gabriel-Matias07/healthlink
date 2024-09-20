@@ -34,7 +34,8 @@ def cadastro_nome():
         print("Nome Inválido")
         return cadastro_nome()
     else:
-        return nome, utils1.passar_nome_user(nome)
+        utils1.passar_nome_user(nome)
+        return nome
 
 def cadastro_email():
     email = input("Digite o seu email: ")
