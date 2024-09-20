@@ -86,27 +86,3 @@ def form_profissional(dado_retornado):
 
     utils1.passar_informacoes_profissional(informacoes_pessoais)
     db_utils1.salvar_form_profissional(telefone, estado, cidade, bairro, numero_casa)
-
-    """ #Percorre uma lista pré-definida de opções, imprime e recebe da entrada padrão o valor escolhido, inserindo em uma lista
-    print("Preferência de contratação.\n ")
-    preferencias_contratacao_prof = ['Médico', 'Enfermeiro', 'Fisioterapeuta', 'Dentista']
-
-    #Laço pra mostrar a lista de preferências
-    i = 1
-    for opcao in preferencias_contratacao_prof:
-            print(f"{i} - {opcao}\n")
-            i += 1
-
-    while True:
-        resposta = int(input("Digite o número das suas preferências e/ou '0' para encerrar: "))
-    
-        if resposta == 0:
-            utils1.carregamento()
-            db_utils1.salvar_form_profissional(telefone, estado, cidade, bairro, numero_casa)
-            break
-        if 1 <= resposta <= len(preferencias_contratacao_prof):
-            preferencia_selecionada = preferencias_contratacao_prof[resposta - 1]
-            preferencia_prof.append(preferencia_selecionada)
-            print(f"Você escolheu: {preferencia_selecionada}\n")
-        else:
-            print("Valor digitado é inválido! Tente novamente.\n") """
