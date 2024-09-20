@@ -1,0 +1,10 @@
+==== Comprovante de Transferência ====
+==== ID da Transação: 4
+==== Nome: exemplo
+==== CPF: 44444444444
+==== Banco: kkk
+==== Agência: 7777
+==== Conta: 666666
+==== Valor: 250.0
+==== Data: 10/10/2024
+======================================

@@ -1,5 +1,5 @@
 import sys, config_precos3, agendamentos3, formulario_boleto3, formulario_cartao3, formulario_transferencia3
-from utils1 import passar_nome_user, encerrar
+from utils1 import passar_nome_user, encerrar, clear
 
 def menu_principal():
     while True:
@@ -14,14 +14,17 @@ def menu_principal():
                 precos = config_precos3.exibir_precos()
 
                 if not precos:
-                    print("Não há serviços disponíveis no momento.")
+                    clear()
+                    print("Não há serviços disponíveis no momento.\n")
                     continue
 
                 if not verificar_datas_disponiveis(precos):
+                    clear()
                     print("Todos os serviços disponíveis não possuem datas disponíveis.")
                     continue
 
                 opcao_agenda = input("\nGostaria de fazer um agendamento? (digite 1 para continuar ou 0 para sair): ")
+                clear()
                 if opcao_agenda == '1':
                     escolher_agendamento(precos)
             case '2':
@@ -91,6 +94,7 @@ def escolher_agendamento(precos):
 
     try:
         valor_num = float(valor)
+        clear()
         print(f"\nO valor do serviço '{servico}' é R${valor_num:.2f}.")
     except ValueError:
         print(f"\nValor retornado para o serviço '{servico}' é inválido: {valor}")
@@ -100,7 +104,8 @@ def escolher_agendamento(precos):
     if confirmar == '1':
         try:
             agendamentos3.inserir_dados_agendamento(nome, servico, valor_num, data_agendamento)
-            print("Agendamento realizado com sucesso!")
+            print("\nAgendamento realizado com sucesso!")
+            clear()
             menu_formularios(valor_num)
         except Exception as e:
             print(f"Erro ao realizar o agendamento: {e}")
@@ -128,5 +133,6 @@ def menu_formularios(valor):
         case _:
             print("Opção inválida. Tente novamente.")
 
-if __name__ == "__main__":  
+if __name__ == "__main__":
+    agendamentos3.criar_tabela_agendamentos()  
     menu_principal()

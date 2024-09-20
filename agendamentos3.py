@@ -29,6 +29,3 @@ def inserir_dados_agendamento(nome, servico, valor, data_agendamento):
     id = cursor.lastrowid
     conexao.close()
     return id
-
-if __name__ == "__main__":
-    criar_tabela_agendamentos()

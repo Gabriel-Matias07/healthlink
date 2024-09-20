@@ -128,6 +128,3 @@ def exibir_precos():
             print(f"Erro ao formatar o preço para o serviço: {tipo_servico}")
     
     return precos
-
-if __name__ == "__main__":
-    tabela_precos()

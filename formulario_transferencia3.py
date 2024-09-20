@@ -1,6 +1,6 @@
 import sqlite3, os
 from datetime import datetime
-from utils1 import passar_nome_user
+from utils1 import passar_nome_user, encerrar
 
 #Função para criar o banco de dados das transferências
 def criar_tabela():
@@ -72,7 +72,6 @@ def emissao_comprovante(id, nome, cpf, banco, agencia, conta, valor_servico, dat
 
     print(f"Comprovante emitido: {caminho}")
 
-
 #Função para validação do cpf
 def validar_cpf(cpf):
     if len(cpf) != 11 or not cpf.isdigit():
@@ -102,7 +101,7 @@ def validar_data(data):
 #Função principal para o usuário preencher o formulario
 def main(valor):
     criar_tabela()
-    print("== Formulário de Transferência ==")
+    print("\n== Formulário de Transferência ==")
     nome = passar_nome_user("exemplo")
 
     cpf = input("CPF: ")
@@ -130,6 +129,7 @@ def main(valor):
 
     if not verificacao(nome, conta):
         id = inserir_dados(nome, cpf, banco, agencia, conta, valor_servico, data)
+        encerrar()
         print("Dados da transferência salvos com sucesso.")
         print("\nSua consulta foi marcada com sucesso!")
         emissao_comprovante(id, nome, cpf, banco, agencia, conta, valor_servico, data)
