@@ -4,7 +4,7 @@ from utils1 import passar_nome_user, encerrar, clear
 #Função principal para o usuário, onde ele vai marcar a sua consulta
 def menu_principal():
     while True:
-        print("Bem-vindo à tela de pagamentos, caro usuário.")
+        print("Bem-vindo à tela de pagamentos.")
         print("== Menu Principal ==")
         print("1. Mostrar Preços e serviços")
         print("2. Sair")
