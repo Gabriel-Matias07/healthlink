@@ -44,3 +44,7 @@ def passar_nome_user(nome):
     return nome
 def passar_nome_prof(nome):
     return nome
+
+#Retorna uma lista contento as preferências do usuário
+def passar_preferencias_contratacao_user(list):
+    return list

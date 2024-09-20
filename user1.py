@@ -100,7 +100,8 @@ def form_usuario(dado_retornado):
         resposta = int(input("Digite o número das suas preferências e/ou '0' para encerrar: "))
     
         if resposta == 0:
-            utils1.carregamento() #
+            utils1.passar_preferencias_contratacao_user(preferencia_user)
+            utils1.carregamento()
             db_utils1.salvar_form_usuario(telefone, estado, cidade, bairro, numero_casa)
             break
         if 1 <= resposta <= len(preferencias_contratacao_user):
