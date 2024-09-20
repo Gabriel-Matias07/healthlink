@@ -84,8 +84,10 @@ def form_profissional(dado_retornado):
     informacoes_pessoais.append(bairro)
     informacoes_pessoais.append(numero_casa)
 
-   
-    #Percorre uma lista pré-definida de opções, imprime e recebe da entrada padrão o valor escolhido, inserindo em uma lista
+    utils1.passar_informacoes_profissional(informacoes_pessoais)
+    db_utils1.salvar_form_profissional(telefone, estado, cidade, bairro, numero_casa)
+
+    """ #Percorre uma lista pré-definida de opções, imprime e recebe da entrada padrão o valor escolhido, inserindo em uma lista
     print("Preferência de contratação.\n ")
     preferencias_contratacao_prof = ['Médico', 'Enfermeiro', 'Fisioterapeuta', 'Dentista']
 
@@ -107,4 +109,4 @@ def form_profissional(dado_retornado):
             preferencia_prof.append(preferencia_selecionada)
             print(f"Você escolheu: {preferencia_selecionada}\n")
         else:
-            print("Valor digitado é inválido! Tente novamente.\n")
+            print("Valor digitado é inválido! Tente novamente.\n") """

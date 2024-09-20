@@ -45,6 +45,10 @@ def passar_nome_user(nome):
 def passar_nome_prof(nome):
     return nome
 
-#Retorna uma lista contento as preferências do usuário
+#Retorna uma lista contento as preferências do usuário e profissional
 def passar_preferencias_contratacao_user(list):
+    return list
+
+#Retorna uma lista contendo telefone, estado, cidade, bairro, telefone, numero_casa
+def passar_informacoes_profissional(list):
     return list
