@@ -103,7 +103,7 @@ def validar_data(data):
 def main(valor):
     criar_tabela()
     print("\n== Formulário de Transferência ==")
-    nome = passar_nome_user("exemplo")
+    nome = passar_nome_user()
 
     cpf = input("CPF: ")
     while not validar_cpf(cpf):
