@@ -44,10 +44,10 @@ def passar_nome_user(nome):
 def passar_nome_prof(nome):
     return nome
 
-#Retorna uma lista contento as preferências do usuário e profissional
+#Retorna uma lista contento as preferências do usuário
 def passar_preferencias_contratacao_user(list):
     return list
 
-#Retorna uma lista contendo telefone, estado, cidade, bairro, telefone, numero_casa, horario
+#Retorna uma lista contendo telefone, estado, cidade, bairro, telefone, numero_casa, horario do profissional
 def passar_informacoes_profissional(list):
     return list
