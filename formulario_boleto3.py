@@ -1,5 +1,6 @@
 import sqlite3, os
 from datetime import datetime
+from utils1 import passar_nome_user, clear
 
 # Função para criar o banco de dados dos boletos
 def tabela_boleto():
@@ -23,7 +24,7 @@ def tabela_boleto():
     conexao.close()
 
 # Função para inserir um novo boleto
-def inserir_boleto(nome, cpf, valor, vencimento):
+def inserir_boleto(nome, cpf, valor, vencimento):  
     diretorio_atual = os.path.abspath(os.path.dirname(__file__))
     caminho_bd = os.path.join(diretorio_atual, 'boletos.db')
 
@@ -59,30 +60,20 @@ def salvar_boleto(nome, cpf, valor, vencimento):
         return
     
     inserir_boleto(nome, cpf, valor, vencimento)
-    print("Dados do boleto salvos com sucesso!")
-
-# Função para garantir que o valor do boleto é positivo
-def validar_valor(valor):
-    try:
-        valor_float = float(valor)
-        return valor_float > 0
-    except ValueError:
-        return False
+    clear()
+    print("\nDados do boleto salvos com sucesso!")
 
 # Função principal para o cadastro
-def main():
+def main(valor):
     tabela_boleto()
     print("== Formulário do Boleto ==")
-    nome_cliente = input("Nome completo: ")
+    nome_cliente = passar_nome_user("exemplo")
     cpf_cliente = input("CPF (somente números): ")
     while not validar_cpf(cpf_cliente):
         print("CPF inválido. Use o formato padrão somente com números.")
         cpf_cliente = input("CPF (somente números): ")
 
-    valor_boleto = input("Valor do boleto: ")
-    while not validar_valor(valor_boleto):
-        print("Valor inválido. O valor deve ser positivo e apenas com números.")
-        valor_boleto = input("Valor do boleto: ")
+    valor_boleto = valor
 
     vencimento_boleto = input("Data de vencimento (DD/MM/YYYY): ")
     while not validar_data(vencimento_boleto):
@@ -92,4 +83,4 @@ def main():
     salvar_boleto(nome_cliente, cpf_cliente, valor_boleto, vencimento_boleto)
     
 if __name__ == "__main__":
-    main()
+    main(0)

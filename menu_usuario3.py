@@ -4,8 +4,7 @@ from utils1 import passar_nome_user, encerrar, clear
 #Função principal para o usuário, onde ele vai marcar a sua consulta
 def menu_principal():
     while True:
-        print("Bem-vindo à tela de pagamentos.")
-        print("== Menu Principal ==")
+        print("== Tela de Pagamentos - Menu Principal ==")
         print("1. Mostrar Preços e serviços")
         print("2. Sair")
         escolha = input("Escolha uma opção: ")
@@ -129,7 +128,7 @@ def menu_formularios(valor):
         case '1':
             formulario_cartao3.main()
         case '2':
-            formulario_boleto3.main()
+            formulario_boleto3.main(valor)
         case '3':
             formulario_transferencia3.main(valor)
         case '4':
