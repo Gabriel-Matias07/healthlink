@@ -123,7 +123,7 @@ def exibir_precos():
         if data:
             precos[tipo_servico]["datas"].append(data)
 
-    print("\n== Preços dos Serviços ==")
+    print("\n== Preços dos Serviços do Profissional ==")
     for tipo_servico, info in precos.items():
         try:
             preco = float(info["preco"])
