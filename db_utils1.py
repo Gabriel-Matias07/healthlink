@@ -2,6 +2,7 @@
 import time,sqlite3, os
 import user1 as user1, professional1, utils1
 import pwinput
+from utils1 import passar_nome_user
 
 #Módulo específico para interações com o banco de dados
 
@@ -188,6 +189,24 @@ def salvar_form_usuario(telefone, estado, cidade, bairro, numeroCasa):
         print(error)
         erro = True
     return erro
+
+#Função para pegar o nome do usuário pelo email
+def obter_nome_usuario_por_email(email):
+    try:
+        banco = sqlite3.connect("dados_usuarios.db")
+        cursor = banco.cursor()
+        cursor.execute("SELECT nome FROM dados_usuarios WHERE email = ?", (email,))
+        resultado = cursor.fetchone()
+        banco.close()
+
+        if resultado:
+            return resultado[0]
+        else:
+            print("Usuário não encontrado.")
+            return None
+    except sqlite3.Error as error:
+        print(f"Erro ao buscar o nome: {error}")
+        return None
 
 #Função que adiciona informações do formulário do profissional ao banco de dados
 def salvar_form_profissional(telefone, estado, cidade, bairro, numeroCasa, horario):
