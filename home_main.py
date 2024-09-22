@@ -112,4 +112,3 @@ def iniciar_menu_principal():
         nome_usuario = dados_profissionais[0][0]  # Nome do primeiro profissional
         email_usuario = dados_profissionais[0][1]  # Email do primeiro profissional
         menu_principal(nome_usuario, email_usuario)
-

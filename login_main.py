@@ -42,7 +42,6 @@ escolher_opcao()
 def chamar_modulo2():
         return home_main.iniciar_menu_principal()
 
-
 verdade = True
 
 if verdade:
