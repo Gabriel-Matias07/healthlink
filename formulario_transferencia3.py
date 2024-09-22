@@ -1,6 +1,6 @@
 import sqlite3, os
 from datetime import datetime
-from utils1 import passar_nome_user, encerrar
+from login_utils import passar_nome_user, encerrar
 
 #Função para criar o banco de dados das transferências
 def criar_tabela():

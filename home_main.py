@@ -1,4 +1,4 @@
-import sqlite3, menu_usuario3, agendamentos3
+import sqlite3, menu_usuario3, pag_agendamentos
 
 # Função para obter dados dos profissionais do banco de dados dados_profissionais.db
 def obter_dados_profissionais():
@@ -56,7 +56,7 @@ def escolher_profissional(informacoes_profissionais):
 # Função simulando a tela de pagamento
 def tela_pagamento(profissional):
     print(f"\nIniciando tela de pagamento para o profissional na cidade de {profissional[2]}, estado {profissional[1]}.")
-    agendamentos3.criar_tabela_agendamentos()
+    pag_agendamentos.criar_tabela_agendamentos()
     menu_usuario3.menu_principal()
 
 # Função simulando a volta para o login
@@ -112,5 +112,4 @@ def iniciar_menu_principal():
         nome_usuario = dados_profissionais[0][0]  # Nome do primeiro profissional
         email_usuario = dados_profissionais[0][1]  # Email do primeiro profissional
         menu_principal(nome_usuario, email_usuario)
-
 

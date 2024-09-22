@@ -1,18 +1,18 @@
 #Módulo para funções relacionadas ao usuário
 
 import pwinput
-import utils1, db_utils1, redirect1
+import login_utils, login_db_utils, login_redirect
 
 #Função que permite usuário escolher entre login, cadastro no sistema ou encerrar programa
 def usuario(retorno):
     print("Opção 'Usuário' selecionada. \n")
     escolha = input("Selecione 1 para login, 2 para cadastro ou 0 para encerrar: ")
     if escolha == '1':
-        return db_utils1.login_usuario()
+        return login_db_utils.login_usuario()
     elif escolha == '2':
-        return cadastro_usuario(), redirect1.redirecionar(retorno)
+        return cadastro_usuario(), login_redirect.redirecionar(retorno)
     elif escolha == '0':
-        return utils1.encerrar()
+        return login_utils.encerrar()
     else:
         print("Resposta Inválida. ")
         return usuario()
@@ -23,9 +23,9 @@ def cadastro_usuario():
     email = cadastro_email()
     senha = cadastro_senha()
     confirma_senha(senha)
-    utils1.carregamento()
-    db_utils1.inserir_bd_usuario(nome, email, senha)
-    utils1.msg_sucesso()
+    login_utils.carregamento()
+    login_db_utils.inserir_bd_usuario(nome, email, senha)
+    login_utils.msg_sucesso()
 
 def cadastro_nome():
     nome = input("Digite o seu nome completo: ")
@@ -33,7 +33,7 @@ def cadastro_nome():
         print("Nome Inválido")
         return cadastro_nome()
     else:
-        utils1.passar_nome_user(nome)
+        login_utils.passar_nome_user(nome)
         return nome
 
 def cadastro_email():
@@ -64,7 +64,7 @@ def confirma_senha(senha):
 def recuperar_senha_usuario(email_login):
     email_base = email_login
     nova_senha = pwinput.pwinput(prompt = f'Digita uma nova senha para o email {email_login}: ')
-    return db_utils1.inserir_nova_senha_usuario(nova_senha, email_base)
+    return login_db_utils.inserir_nova_senha_usuario(nova_senha, email_base)
 
 #Função de formulário do usuário
 def form_usuario(dado_retornado):
@@ -99,9 +99,9 @@ def form_usuario(dado_retornado):
         resposta = int(input("Digite o número das suas preferências e/ou '0' para encerrar: "))
     
         if resposta == 0:
-            utils1.passar_preferencias_contratacao_user(preferencia_user)
-            utils1.carregamento()
-            db_utils1.salvar_form_usuario(telefone, estado, cidade, bairro, numero_casa)
+            login_utils.passar_preferencias_contratacao_user(preferencia_user)
+            login_utils.carregamento()
+            login_db_utils.salvar_form_usuario(telefone, estado, cidade, bairro, numero_casa)
             break
         if 1 <= resposta <= len(preferencias_contratacao_user):
             preferencia_selecionada = preferencias_contratacao_user[resposta - 1]

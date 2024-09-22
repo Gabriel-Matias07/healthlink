@@ -1,6 +1,6 @@
 import sqlite3, os
 from datetime import datetime
-from utils1 import passar_nome_user, clear
+from login_utils import passar_nome_user, clear
 
 # Função para criar o banco de dados dos boletos
 def tabela_boleto():

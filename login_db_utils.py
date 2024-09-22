@@ -1,6 +1,6 @@
 
 import time,sqlite3, os
-import user1 as user1, professional1, utils1
+import login_user as login_user, login_profissionais, login_utils
 import pwinput
 
 #Módulo específico para interações com o banco de dados
@@ -119,7 +119,7 @@ def login_usuario():
                 print("Senha incorreta.")
                 resposta = input("Esqueceu sua senha? Digite 1 para recuperar ou 2 para tentar novamente: ")
                 if resposta == '1':
-                    return user1.recuperar_senha_usuario(email_login)
+                    return login_user.recuperar_senha_usuario(email_login)
                 elif resposta == '2':
                     return login_usuario()
                 else:
@@ -160,7 +160,7 @@ def login_profissional():
                 print("Senha incorreta. ")
                 resposta = input("Esqueceu sua senha? Digite 1 para recuperar ou 2 para tentar novamente: ")
                 if resposta == '1':
-                    return professional1.recuperar_senha_profissional(email_login)
+                    return login_profissionais.recuperar_senha_profissional(email_login)
                 elif resposta == '2':
                     return login_profissional()
                 else:
@@ -183,7 +183,7 @@ def salvar_form_usuario(telefone, estado, cidade, bairro, numeroCasa):
         cursor.execute(f"INSERT INTO informacoes_user VALUES (?, ?, ?, ?, ?)", (telefone, estado, cidade, bairro, numeroCasa)) #Insere os valores no banco
         banco.commit()
         banco.close()
-        utils1.msg_sucesso()
+        login_utils.msg_sucesso()
     except sqlite3.Error as error:
         print(error)
         erro = True
@@ -199,7 +199,7 @@ def salvar_form_profissional(telefone, estado, cidade, bairro, numeroCasa, horar
         cursor.execute(f"INSERT INTO informacoes_prof VALUES (?, ?, ?, ?, ?, ?)", (telefone, estado, cidade, bairro, numeroCasa, horario)) #Insere os valores no banco
         banco.commit()
         banco.close()
-        utils1.msg_sucesso()
+        login_utils.msg_sucesso()
     except sqlite3.Error as error:
         print(error)
         erro = True

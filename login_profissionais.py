@@ -1,7 +1,7 @@
 #Módulo para funções relacionadas ao profissional
 
 import pwinput
-import utils1, db_utils1, redirect1
+import login_utils, login_db_utils, login_redirect
 
 #Função que permite profissional escolher entre login, cadastro no sistema ou encerrar programa
 def profissional(retorno):
@@ -9,11 +9,11 @@ def profissional(retorno):
     escolha = input("Selecione 1 para login, 2 para cadastro ou 0 para encerrar: ")
     if escolha == '1':
         print(retorno)
-        return db_utils1.login_profissional()
+        return login_db_utils.login_profissional()
     elif escolha == '2':
-        cadastro_profissional(), redirect1.redirecionar(retorno)
+        cadastro_profissional(), login_redirect.redirecionar(retorno)
     elif escolha == '0':
-        utils1.encerrar()
+        login_utils.encerrar()
     else:
         print("Resposta inválida. ")
         return profissional()
@@ -24,9 +24,9 @@ def cadastro_profissional():
     email = cadastro_email()
     senha = cadastro_senha()
     confirma_senha(senha)
-    utils1.carregamento()
-    db_utils1.inserir_bd_profissional(nome, email, senha)
-    utils1.msg_sucesso()
+    login_utils.carregamento()
+    login_db_utils.inserir_bd_profissional(nome, email, senha)
+    login_utils.msg_sucesso()
 
 def cadastro_nome():
     nome = input("Digite o seu nome completo: ")
@@ -34,7 +34,7 @@ def cadastro_nome():
         print("Nome Inválido")
         return cadastro_nome()
     else:
-        utils1.passar_nome_prof(nome)
+        login_utils.passar_nome_prof(nome)
         return nome
 
 def cadastro_email():
@@ -65,7 +65,7 @@ def confirma_senha(senha):
 def recuperar_senha_profissional(email_login):
     email_base = email_login
     nova_senha = pwinput.pwinput(prompt = f'Digita uma nova senha para o email {email_login}: ')
-    return db_utils1.inserir_nova_senha_profissional(nova_senha, email_base)      
+    return login_db_utils.inserir_nova_senha_profissional(nova_senha, email_base)      
 
 def form_profissional(dado_retornado):
     print(f"Detectamos que você se cadastrou na nossa plataforma como {dado_retornado}. Iremos precisar de algumas informações para darmos prosseguimento.\n ")
@@ -86,5 +86,5 @@ def form_profissional(dado_retornado):
     informacoes_pessoais.append(numero_casa)
     informacoes_pessoais.append(horario)
 
-    utils1.passar_informacoes_profissional(informacoes_pessoais)
-    db_utils1.salvar_form_profissional(telefone, estado, cidade, bairro, numero_casa, horario)
+    login_utils.passar_informacoes_profissional(informacoes_pessoais)
+    login_db_utils.salvar_form_profissional(telefone, estado, cidade, bairro, numero_casa, horario)

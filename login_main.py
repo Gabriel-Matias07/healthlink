@@ -1,5 +1,5 @@
 import sys,time
-import user1, professional1, utils1, home
+import login_user, login_profissionais, login_utils, home_main
 
 #Módulo que vai chamar as funções principais de outros módulos
 
@@ -25,14 +25,14 @@ def escolher_opcao():
     print("\n")
     if escolha == '1':
         retorno = "usuário"
-        utils1.repassar_user_ou_prof(retorno)
-        return user1.usuario(retorno)
+        login_utils.repassar_user_ou_prof(retorno)
+        return login_user.usuario(retorno)
     elif escolha == '2':
         retorno = "profissional"
-        utils1.repassar_user_ou_prof(retorno)
-        return professional1.profissional(retorno)
+        login_utils.repassar_user_ou_prof(retorno)
+        return login_profissionais.profissional(retorno)
     elif escolha == '0':
-        return utils1.encerrar()
+        return login_utils.encerrar()
     else:
         print("Resposta inválida. ")
         return escolher_opcao()
@@ -40,7 +40,7 @@ def escolher_opcao():
 apresentacao()
 escolher_opcao()
 def chamar_modulo2():
-        return home.iniciar_menu_principal()
+        return home_main.iniciar_menu_principal()
 
 
 verdade = True
@@ -48,5 +48,5 @@ verdade = True
 if verdade:
     chamar_modulo2()
 else:
-    utils1.clear()
-    utils1.msg_sucesso()
+    login_utils.clear()
+    login_utils.msg_sucesso()

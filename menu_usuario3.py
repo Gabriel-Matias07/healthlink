@@ -1,5 +1,5 @@
-import sys, config_precos3, agendamentos3, formulario_boleto3, formulario_cartao3, formulario_transferencia3
-from utils1 import passar_nome_user, encerrar, clear
+import sys, pag_precos, pag_agendamentos, formulario_boleto3, pag_form_cartao, formulario_transferencia3
+from login_utils import passar_nome_user, encerrar, clear
 
 #Função principal para o usuário, onde ele vai marcar a sua consulta
 def menu_principal():
@@ -11,7 +11,7 @@ def menu_principal():
 
         match escolha:
             case '1':
-                precos = config_precos3.exibir_precos()
+                precos = pag_precos.exibir_precos()
 
                 if not precos:
                     clear()
@@ -89,7 +89,7 @@ def escolher_agendamento(precos):
         print("Entrada inválida. Tente novamente.")
         return
 
-    valor = config_precos3.obter_valor_servico(servico)
+    valor = pag_precos.obter_valor_servico(servico)
 
     if valor is None:
         print(f"\nServiço '{servico}' não encontrado. Tente novamente.")
@@ -106,7 +106,7 @@ def escolher_agendamento(precos):
     confirmar = input("Deseja confirmar o agendamento com este valor? (digite 1 para confirmar ou 0 para encerrar): ")
     if confirmar == '1':
         try:
-            agendamentos3.inserir_dados_agendamento(nome, servico, valor_num, data_agendamento)
+            pag_agendamentos.inserir_dados_agendamento(nome, servico, valor_num, data_agendamento)
             print("\nAgendamento realizado com sucesso!")
             clear()
             menu_formularios(valor_num)
@@ -127,7 +127,7 @@ def menu_formularios(valor):
     
     match opcao:
         case '1':
-            formulario_cartao3.main()
+            pag_form_cartao.main()
         case '2':
             formulario_boleto3.main(valor)
         case '3':
@@ -138,5 +138,5 @@ def menu_formularios(valor):
             print("Opção inválida. Tente novamente.")
 
 if __name__ == "__main__":
-    agendamentos3.criar_tabela_agendamentos()  
+    pag_agendamentos.criar_tabela_agendamentos()  
     menu_principal()
