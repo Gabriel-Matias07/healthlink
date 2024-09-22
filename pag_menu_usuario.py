@@ -1,4 +1,4 @@
-import sys, pag_precos, pag_agendamentos, formulario_boleto3, pag_form_cartao, formulario_transferencia3
+import sys, pag_precos, pag_agendamentos, pag_form_boleto, pag_form_cartao, pag_form_transferencia
 from login_utils import passar_nome_user, encerrar, clear
 
 #Função principal para o usuário, onde ele vai marcar a sua consulta
@@ -129,9 +129,9 @@ def menu_formularios(valor):
         case '1':
             pag_form_cartao.main()
         case '2':
-            formulario_boleto3.main(valor)
+            pag_form_boleto.main(valor)
         case '3':
-            formulario_transferencia3.main(valor)
+            pag_form_transferencia.main(valor)
         case '4':
             return
         case _:

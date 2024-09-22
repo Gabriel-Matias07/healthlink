@@ -1,4 +1,4 @@
-import sqlite3, menu_usuario3, pag_agendamentos
+import sqlite3, pag_menu_usuario, pag_agendamentos
 
 # Função para obter dados dos profissionais do banco de dados dados_profissionais.db
 def obter_dados_profissionais():
@@ -57,7 +57,7 @@ def escolher_profissional(informacoes_profissionais):
 def tela_pagamento(profissional):
     print(f"\nIniciando tela de pagamento para o profissional na cidade de {profissional[2]}, estado {profissional[1]}.")
     pag_agendamentos.criar_tabela_agendamentos()
-    menu_usuario3.menu_principal()
+    pag_menu_usuario.menu_principal()
 
 # Função simulando a volta para o login
 def voltar_login():
