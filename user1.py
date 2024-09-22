@@ -8,7 +8,6 @@ def usuario(retorno):
     print("Opção 'Usuário' selecionada. \n")
     escolha = input("Selecione 1 para login, 2 para cadastro ou 0 para encerrar: ")
     if escolha == '1':
-        print(retorno)
         return db_utils1.login_usuario()
     elif escolha == '2':
         return cadastro_usuario(), redirect1.redirecionar(retorno)
