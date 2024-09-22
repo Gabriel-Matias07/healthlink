@@ -1,4 +1,4 @@
-import sys, config_precos3, agendamentos3, formulario_boleto3, formulario_cartao3, formulario_transferencia3
+import sys, config_precos3, agendamentos3, formulario_boleto3, formulario_cartao3, formulario_transferencia3, os, sqlite3
 from utils1 import passar_nome_user, encerrar, clear
 
 #Função principal para o usuário, onde ele vai marcar a sua consulta
@@ -42,7 +42,9 @@ def verificar_datas_disponiveis(precos):
 
 #Função para marcar a consulta
 def escolher_agendamento(precos):
+
     nome = passar_nome_user("Exemplo")
+
     servicos = list(precos.keys())
     if not servicos:
         print("Nenhum serviço disponível no momento.")
