@@ -67,7 +67,7 @@ def salvar_boleto(nome, cpf, valor, vencimento):
 def main(valor):
     tabela_boleto()
     print("== Formulário do Boleto ==")
-    nome_cliente = passar_nome_user()
+    nome_cliente = passar_nome_user("Exemplo")
     cpf_cliente = input("CPF (somente números): ")
     while not validar_cpf(cpf_cliente):
         print("CPF inválido. Use o formato padrão somente com números.")

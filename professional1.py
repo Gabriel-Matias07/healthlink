@@ -87,4 +87,4 @@ def form_profissional(dado_retornado):
     informacoes_pessoais.append(horario)
 
     utils1.passar_informacoes_profissional(informacoes_pessoais)
-    db_utils1.salvar_form_profissional(telefone, estado, cidade, bairro, numero_casa)
+    db_utils1.salvar_form_profissional(telefone, estado, cidade, bairro, numero_casa, horario)

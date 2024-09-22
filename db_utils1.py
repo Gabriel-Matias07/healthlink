@@ -190,13 +190,13 @@ def salvar_form_usuario(telefone, estado, cidade, bairro, numeroCasa):
     return erro
 
 #Função que adiciona informações do formulário do profissional ao banco de dados
-def salvar_form_profissional(telefone, estado, cidade, bairro, numeroCasa):
+def salvar_form_profissional(telefone, estado, cidade, bairro, numeroCasa, horario):
     erro = False
     try:
         banco = sqlite3.connect("informacoes_prof.db")
         cursor = banco.cursor()
-        cursor.execute("CREATE TABLE IF NOT EXISTS informacoes_prof (telefone text, estado text, cidade text, bairro text, numeroCasa text)") #Cria o banco caso não exista
-        cursor.execute(f"INSERT INTO informacoes_prof VALUES (?, ?, ?, ?, ?)", (telefone, estado, cidade, bairro, numeroCasa)) #Insere os valores no banco
+        cursor.execute("CREATE TABLE IF NOT EXISTS informacoes_prof (telefone text, estado text, cidade text, bairro text, numeroCasa text, horario text)") #Cria o banco caso não exista
+        cursor.execute(f"INSERT INTO informacoes_prof VALUES (?, ?, ?, ?, ?, ?)", (telefone, estado, cidade, bairro, numeroCasa, horario)) #Insere os valores no banco
         banco.commit()
         banco.close()
         utils1.msg_sucesso()

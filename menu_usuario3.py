@@ -42,8 +42,7 @@ def verificar_datas_disponiveis(precos):
 
 #Função para marcar a consulta
 def escolher_agendamento(precos):
-    nome = passar_nome_user()
-    
+    nome = passar_nome_user("Exemplo")
     servicos = list(precos.keys())
     if not servicos:
         print("Nenhum serviço disponível no momento.")

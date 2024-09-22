@@ -1,5 +1,5 @@
 import sys,time
-import user1, professional1, utils1
+import user1, professional1, utils1, home
 
 #Módulo que vai chamar as funções principais de outros módulos
 
@@ -39,3 +39,14 @@ def escolher_opcao():
 
 apresentacao()
 escolher_opcao()
+def chamar_modulo2():
+        return home.iniciar_menu_principal()
+
+
+verdade = True
+
+if verdade:
+    chamar_modulo2()
+else:
+    utils1.clear()
+    utils1.msg_sucesso()
