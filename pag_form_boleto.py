@@ -1,6 +1,6 @@
 import sqlite3, os
 from datetime import datetime
-from login_utils import passar_nome_user, encerrar
+from login_utils import encerrar
 
 # Função para criar o banco de dados dos boletos
 def tabela_boleto():
@@ -68,7 +68,7 @@ def salvar_boleto(nome, cpf, valor, vencimento):
 def main(valor):
     tabela_boleto()
     print("== Formulário do Boleto ==")
-    nome_cliente = passar_nome_user("Exemplo")
+    nome_cliente = input("Insira o seu nome novamente: ")
     cpf_cliente = input("CPF (somente números): ")
     while not validar_cpf(cpf_cliente):
         print("CPF inválido. Use o formato padrão somente com números.")

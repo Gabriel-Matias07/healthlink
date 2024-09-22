@@ -1,5 +1,5 @@
 import sys, pag_precos, pag_agendamentos, pag_form_boleto, pag_form_cartao, pag_form_transferencia
-from login_utils import passar_nome_user, encerrar, clear
+from login_utils import encerrar, clear
 
 #Função principal para o usuário, onde ele vai marcar a sua consulta
 def menu_principal():
@@ -43,7 +43,7 @@ def verificar_datas_disponiveis(precos):
 #Função para marcar a consulta
 def escolher_agendamento(precos):
 
-    nome = passar_nome_user("Exemplo")
+    nome = input("Digite o seu nome novamente: ")
 
     servicos = list(precos.keys())
     if not servicos:
