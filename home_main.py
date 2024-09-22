@@ -2,7 +2,7 @@ import sqlite3, pag_menu_usuario, pag_agendamentos
 
 # Função para obter dados dos profissionais do banco de dados dados_profissionais.db
 def obter_dados_profissionais():
-    conn = sqlite3.connect('dados_profissionais.db')
+    conn = sqlite3.connect('login_data_base/dados_profissionais.db')
     cursor = conn.cursor()
     
     cursor.execute("SELECT nome, email FROM dados_profissionais")
@@ -13,7 +13,7 @@ def obter_dados_profissionais():
 
 # Função para obter informações adicionais dos profissionais no banco informacoes_prof.db
 def obter_informacoes_profissionais():
-    conn = sqlite3.connect('informacoes_prof.db')
+    conn = sqlite3.connect('login_data_base/informacoes_prof.db')
     cursor = conn.cursor()
     
     cursor.execute("SELECT telefone, estado, cidade, bairro, numeroCasa, horario FROM informacoes_prof")

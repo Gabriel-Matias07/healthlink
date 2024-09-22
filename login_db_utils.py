@@ -9,7 +9,7 @@ import pwinput
 def inserir_bd_usuario(nome, email, senha):
     erro = False
     try:
-        banco = sqlite3.connect("data_base/dados_usuarios.db") #Conecta o banco de dados
+        banco = sqlite3.connect("login_data_base/dados_usuarios.db") #Conecta o banco de dados
         cursor = banco.cursor()
         cursor.execute("CREATE TABLE IF NOT EXISTS dados_usuarios (nome text, email text, senha text)") #Cria o banco caso não exista
         cursor.execute("SELECT COUNT(*) AS existe_login FROM dados_usuarios WHERE email = ?", (email, )) #Verifica se o email já existe no banco
@@ -32,7 +32,7 @@ def inserir_bd_usuario(nome, email, senha):
 def inserir_bd_profissional(nome, email, senha):
     erro = False
     try:
-        banco = sqlite3.connect("data_base/dados_profissionais.db") #Conecta o banco de dados
+        banco = sqlite3.connect("login_data_base/dados_profissionais.db") #Conecta o banco de dados
         cursor = banco.cursor()
         cursor.execute("CREATE TABLE IF NOT EXISTS dados_profissionais (nome text, email text, senha text)") #Cria o banco caso não exista
         cursor.execute("SELECT COUNT(*) AS existe_login FROM dados_profissionais WHERE email = ?", (email, )) #Verifica se o email já existe no banco
@@ -54,7 +54,7 @@ def inserir_bd_profissional(nome, email, senha):
 #Função que insere a nova senha no banco de dados
 def inserir_nova_senha_usuario(nova_senha, email_base):
     try:
-        banco = sqlite3.connect("data_base/dados_usuarios.db")
+        banco = sqlite3.connect("login_data_base/dados_usuarios.db")
         cursor = banco.cursor()
         cursor.execute("UPDATE dados_usuarios SET senha = ? WHERE email = ?", (nova_senha, email_base)) #Atualiza a senha para o email de parâmetro
         banco.commit()
@@ -74,7 +74,7 @@ def inserir_nova_senha_usuario(nova_senha, email_base):
 #Função que insere a nova senha no banco de dados
 def inserir_nova_senha_profissional(nova_senha, email_base):
     try:
-        banco = sqlite3.connect("data_base/dados_profissionais.db")
+        banco = sqlite3.connect("login_data_base/dados_profissionais.db")
         cursor = banco.cursor()
         cursor.execute("UPDATE dados_profissionais SET senha = ? WHERE email = ?", (nova_senha, email_base)) #Atualiza a senha para o email de parâmetro
         banco.commit()
@@ -106,7 +106,7 @@ def login_usuario():
         print("Uma senha válida precisa ter mais de 5 caracteres. ")
         return login_usuario()
     try:
-        banco = sqlite3.connect("data_base/dados_usuarios.db")
+        banco = sqlite3.connect("login_data_base/dados_usuarios.db")
         cursor = banco.cursor()
         cursor.execute("SELECT senha FROM dados_usuarios WHERE email = ?", (email_login,)) #Verifica a coluna senha onde email condiz ao parêmetro
         resultado = cursor.fetchone() #Retorna uma tupla contendo o valor da coluna senha
@@ -147,7 +147,7 @@ def login_profissional():
         print("Uma senha válida precisa ter mais de 5 caracteres. ")
         return login_profissional()
     try:
-        banco = sqlite3.connect("data_base/dados_profissionais.db")
+        banco = sqlite3.connect("login_data_base/dados_profissionais.db")
         cursor = banco.cursor()
         cursor.execute("SELECT senha FROM dados_profissionais WHERE email = ?", (email_login,)) #Verifica a coluna senha onde email condiz ao parêmetro
         resultado = cursor.fetchone() #Retorna uma tupla contendo o valor da coluna senha
@@ -177,7 +177,7 @@ def login_profissional():
 def salvar_form_usuario(telefone, estado, cidade, bairro, numeroCasa):
     erro = False
     try:
-        banco = sqlite3.connect("data_base/informacoes_user.db")
+        banco = sqlite3.connect("login_data_base/informacoes_user.db")
         cursor = banco.cursor()
         cursor.execute("CREATE TABLE IF NOT EXISTS informacoes_user (telefone text, estado text, cidade text, bairro text, numeroCasa text)") #Cria o banco caso não exista
         cursor.execute(f"INSERT INTO informacoes_user VALUES (?, ?, ?, ?, ?)", (telefone, estado, cidade, bairro, numeroCasa)) #Insere os valores no banco
@@ -193,7 +193,7 @@ def salvar_form_usuario(telefone, estado, cidade, bairro, numeroCasa):
 def salvar_form_profissional(telefone, estado, cidade, bairro, numeroCasa, horario):
     erro = False
     try:
-        banco = sqlite3.connect("data_base/informacoes_prof.db")
+        banco = sqlite3.connect("login_data_base/informacoes_prof.db")
         cursor = banco.cursor()
         cursor.execute("CREATE TABLE IF NOT EXISTS informacoes_prof (telefone text, estado text, cidade text, bairro text, numeroCasa text, horario text)") #Cria o banco caso não exista
         cursor.execute(f"INSERT INTO informacoes_prof VALUES (?, ?, ?, ?, ?, ?)", (telefone, estado, cidade, bairro, numeroCasa, horario)) #Insere os valores no banco
