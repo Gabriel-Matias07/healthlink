@@ -1,11 +1,11 @@
 import sqlite3, os
 from datetime import datetime
-from login_utils import passar_nome_user, clear
+from login_utils import passar_nome_user, encerrar
 
 # Função para criar o banco de dados dos boletos
 def tabela_boleto():
     diretorio_atual = os.path.abspath(os.path.dirname(__file__))
-    caminho_bd = os.path.join(diretorio_atual, 'boletos.db')
+    caminho_bd = os.path.join(diretorio_atual, 'pag_data_base/boletos.db')
 
     conexao = sqlite3.connect(caminho_bd)
     cursor = conexao.cursor()
@@ -26,7 +26,7 @@ def tabela_boleto():
 # Função para inserir um novo boleto
 def inserir_boleto(nome, cpf, valor, vencimento):  
     diretorio_atual = os.path.abspath(os.path.dirname(__file__))
-    caminho_bd = os.path.join(diretorio_atual, 'boletos.db')
+    caminho_bd = os.path.join(diretorio_atual, 'pag_data_base/boletos.db')
 
     conexao = sqlite3.connect(caminho_bd)
     cursor = conexao.cursor()
@@ -60,8 +60,9 @@ def salvar_boleto(nome, cpf, valor, vencimento):
         return
     
     inserir_boleto(nome, cpf, valor, vencimento)
-    clear()
+    encerrar()
     print("\nDados do boleto salvos com sucesso!")
+    print("Pagamento Realizado!")
 
 # Função principal para o cadastro
 def main(valor):

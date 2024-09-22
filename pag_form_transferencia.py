@@ -5,7 +5,7 @@ from login_utils import passar_nome_user, encerrar
 #Função para criar o banco de dados das transferências
 def criar_tabela():
     diretorio_atual = os.path.abspath(os.path.dirname(__file__))
-    caminho_bd = os.path.join(diretorio_atual, 'transferencias.db')
+    caminho_bd = os.path.join(diretorio_atual, 'pag_data_base/transferencias.db')
     
     conexao = sqlite3.connect(caminho_bd)
     cursor = conexao.cursor()
@@ -24,7 +24,7 @@ def criar_tabela():
 #Função para inserir os dados no banco
 def inserir_dados(nome, cpf, banco, agencia, conta, valor, data):
     diretorio_atual = os.path.abspath(os.path.dirname(__file__))
-    caminho_bd = os.path.join(diretorio_atual, 'transferencias.db')
+    caminho_bd = os.path.join(diretorio_atual, 'pag_data_base/transferencias.db')
     
     conexao = sqlite3.connect(caminho_bd)
     cursor = conexao.cursor()
@@ -38,7 +38,7 @@ def inserir_dados(nome, cpf, banco, agencia, conta, valor, data):
 #Função para verificação de nome e conta
 def verificacao(nome, conta):
     diretorio_atual = os.path.abspath(os.path.dirname(__file__))
-    caminho_bd = os.path.join(diretorio_atual, 'transferencias.db')
+    caminho_bd = os.path.join(diretorio_atual, 'pag_data_base/transferencias.db')
     
     conexao = sqlite3.connect(caminho_bd)
     cursor = conexao.cursor()

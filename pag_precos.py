@@ -3,7 +3,7 @@ import sqlite3, os
 #Função para criar o banco de dados dos servicos
 def tabela_precos():
     diretorio_atual = os.path.abspath(os.path.dirname(__file__))
-    caminho_bd = os.path.join(diretorio_atual, 'precos.db')
+    caminho_bd = os.path.join(diretorio_atual, 'pag_data_base/precos.db')
     
     conexao = sqlite3.connect(caminho_bd)
     cursor = conexao.cursor()
@@ -27,7 +27,7 @@ def tabela_precos():
 #Função para pegar o valor do serviço do banco
 def obter_valor_servico(tipo_servico):
     diretorio_atual = os.path.abspath(os.path.dirname(__file__))
-    caminho_bd = os.path.join(diretorio_atual, 'precos.db')
+    caminho_bd = os.path.join(diretorio_atual, 'pag_data_base/precos.db')
 
     conexao = sqlite3.connect(caminho_bd)
     cursor = conexao.cursor()
@@ -44,7 +44,7 @@ def obter_valor_servico(tipo_servico):
 #Função para o profissional adicionar o preço do seu serviço
 def adicionar_preco(tipo_servico, preco, datas_disponiveis):
     diretorio_atual = os.path.abspath(os.path.dirname(__file__))
-    caminho_bd = os.path.join(diretorio_atual, 'precos.db')
+    caminho_bd = os.path.join(diretorio_atual, 'pag_data_base/precos.db')
     
     conexao = sqlite3.connect(caminho_bd)
     cursor = conexao.cursor()
@@ -63,7 +63,7 @@ def adicionar_preco(tipo_servico, preco, datas_disponiveis):
 #Função para o profissional atualizar o preço
 def atualizar_preco(id, preco):
     diretorio_atual = os.path.abspath(os.path.dirname(__file__))
-    caminho_bd = os.path.join(diretorio_atual, 'precos.db')
+    caminho_bd = os.path.join(diretorio_atual, 'pag_data_base/precos.db')
     
     conexao = sqlite3.connect(caminho_bd)
     cursor = conexao.cursor()
@@ -76,7 +76,7 @@ def atualizar_preco(id, preco):
 #Função para o profissional adicionar datas dos seus serviços
 def adicionar_datas_disponiveis(preco_id, novas_datas):
     diretorio_atual = os.path.abspath(os.path.dirname(__file__))
-    caminho_bd = os.path.join(diretorio_atual, 'precos.db')
+    caminho_bd = os.path.join(diretorio_atual, 'pag_data_base/precos.db')
     
     conexao = sqlite3.connect(caminho_bd)
     cursor = conexao.cursor()
@@ -91,7 +91,7 @@ def adicionar_datas_disponiveis(preco_id, novas_datas):
 #Função para o profissional remover datas dos seus serviços
 def remover_data_disponivel(preco_id, data):
     diretorio_atual = os.path.abspath(os.path.dirname(__file__))
-    caminho_bd = os.path.join(diretorio_atual, 'precos.db')
+    caminho_bd = os.path.join(diretorio_atual, 'pag_data_base/precos.db')
     
     conexao = sqlite3.connect(caminho_bd)
     cursor = conexao.cursor()
@@ -104,7 +104,7 @@ def remover_data_disponivel(preco_id, data):
 #Função para exibição dos serviços e preços
 def exibir_precos():
     diretorio_atual = os.path.abspath(os.path.dirname(__file__))
-    caminho_bd = os.path.join(diretorio_atual, 'precos.db')
+    caminho_bd = os.path.join(diretorio_atual, 'pag_data_base/precos.db')
     
     conexao = sqlite3.connect(caminho_bd)
     cursor = conexao.cursor()

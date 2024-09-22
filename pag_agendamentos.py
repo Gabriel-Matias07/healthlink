@@ -3,7 +3,7 @@ import sqlite3, os
 # Função para criar a tabela de agendamentos
 def criar_tabela_agendamentos():
     diretorio_atual = os.path.abspath(os.path.dirname(__file__))
-    caminho_bd = os.path.join(diretorio_atual, 'consultas.db')
+    caminho_bd = os.path.join(diretorio_atual, 'pag_data_base/consultas.db')
     
     conexao = sqlite3.connect(caminho_bd)
     cursor = conexao.cursor()
@@ -19,7 +19,7 @@ def criar_tabela_agendamentos():
 # Função para inserir dados no banco de agendamentos
 def inserir_dados_agendamento(nome, servico, valor, data_agendamento):
     diretorio_atual = os.path.abspath(os.path.dirname(__file__))
-    caminho_bd = os.path.join(diretorio_atual, 'consultas.db')
+    caminho_bd = os.path.join(diretorio_atual, 'pag_data_base/consultas.db')
     
     conexao = sqlite3.connect(caminho_bd)
     cursor = conexao.cursor()

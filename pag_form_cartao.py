@@ -1,9 +1,10 @@
-import sqlite3, os, datetime
+import sqlite3, os
+from login_utils import encerrar
 
 # Função para criar o banco de dados dos cartões
 def tabela_cartao():
     diretorio_atual = os.path.abspath(os.path.dirname(__file__))
-    caminho_bd = os.path.join(diretorio_atual, 'cartoes.db')
+    caminho_bd = os.path.join(diretorio_atual, 'pag_data_base/cartoes.db')
 
     conexao = sqlite3.connect(caminho_bd)
     cursor = conexao.cursor()
@@ -22,7 +23,7 @@ def tabela_cartao():
 # Função para verificar existência do cartão no banco
 def verificar_cartao_existente(numero):
     diretorio_atual = os.path.abspath(os.path.dirname(__file__))
-    caminho_bd = os.path.join(diretorio_atual, 'cartoes.db')
+    caminho_bd = os.path.join(diretorio_atual, 'pag_data_base/cartoes.db')
 
     conexao = sqlite3.connect(caminho_bd)
     cursor = conexao.cursor()
@@ -36,7 +37,7 @@ def verificar_cartao_existente(numero):
 # Função para inserir os dados do cartão no banco de dados
 def inserir_cartao(nome, numero, data_validade, cvv):
     diretorio_atual = os.path.abspath(os.path.dirname(__file__))
-    caminho_bd = os.path.join(diretorio_atual, 'cartoes.db')
+    caminho_bd = os.path.join(diretorio_atual, 'pag_data_base/cartoes.db')
 
     conexao = sqlite3.connect(caminho_bd)
     cursor = conexao.cursor()
@@ -87,7 +88,9 @@ def main():
         print("\nErro, cartão já cadastrado!")
     else:
         inserir_cartao(nome, numero, data_validade, cvv)
+        encerrar()
         print("\nCartão Salvo!")
-    
+        print("Agendamento Realizado!")
+
 if __name__ == "__main__":
     main()
