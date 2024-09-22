@@ -71,7 +71,7 @@ def emissao_comprovante(id, nome, cpf, banco, agencia, conta, valor_servico, dat
         arquivo.write(f"==== Data: {data}\n")
         arquivo.write("======================================\n")
 
-    print(f"Comprovante emitido: {caminho}")
+    print("Comprovante emitido na pasta comprovantes!")
 
 #Função para validação do cpf
 def validar_cpf(cpf):
